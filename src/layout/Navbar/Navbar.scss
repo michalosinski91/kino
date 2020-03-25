@@ -1,0 +1,10 @@
+.navbar {
+  grid-column: full-start / full-end;
+  grid-row: 1/2;
+
+  font-size: 2rem;
+  background-color: orangered;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

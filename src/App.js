@@ -1,8 +1,14 @@
 import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
 
+import Navbar from "./layout/Navbar/Navbar";
+
 export default function App() {
-  return <div>Boilerplate</div>;
+  return (
+    <div className="container">
+      <Navbar />
+    </div>
+  );
 }
 
 /*
