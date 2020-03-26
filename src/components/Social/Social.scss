@@ -4,7 +4,13 @@
 
   &__item {
     &:not(:first-child) {
-      margin-left: 1rem;
+      margin-left: 2rem;
+    }
+
+    & a,
+    a:visited {
+      text-decoration: none;
+      color: inherit;
     }
   }
 }
