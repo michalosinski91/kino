@@ -25,5 +25,5 @@ body {
     )
     [center-end] minmax(6rem, 1fr)
     [full-end];
-  grid-template-rows: 8rem 6rem repeat(2, min-content);
+  grid-template-rows: 8rem 8rem repeat(2, min-content);
 }
