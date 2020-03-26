@@ -2,10 +2,12 @@ import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
 
 import Navbar from "./layout/Navbar/Navbar";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 export default function App() {
   return (
     <div className="container">
+      <SearchBar />
       <Navbar />
     </div>
   );
