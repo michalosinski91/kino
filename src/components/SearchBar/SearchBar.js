@@ -16,7 +16,7 @@ export default function SearchBar() {
           className="search-bar__button"
           onClick={e => e.preventDefault()}
         >
-          X
+          <i className="fas fa-times search-bar__icon"></i>
         </button>
       </form>
     </div>

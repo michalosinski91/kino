@@ -1,7 +1,10 @@
 .search-bar {
-  background-color: green;
   grid-row: 1 / 2;
   grid-column: full-start / full-end;
+
+  background: linear-gradient(-45deg, #337a58, #383e4e, #493a19);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
 
   &__form {
     display: flex;
@@ -28,10 +31,13 @@
   }
 
   &__button {
+    cursor: pointer;
+    align-self: center;
     background-color: transparent;
     border: none;
     margin-right: 2rem;
-    width: 5rem;
+    width: 4rem;
+    height: 4rem;
     font-size: 2.5rem;
     font-weight: 300;
     color: #fff;
@@ -40,5 +46,25 @@
     &:focus {
       outline: none;
     }
+  }
+
+  &__icon {
+    transition: transform 0.2s;
+  }
+
+  &__button:hover &__icon {
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
