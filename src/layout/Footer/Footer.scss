@@ -3,4 +3,12 @@
   grid-row: 4 / 5;
 
   background-color: purple;
+  color: #fff;
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    padding: 2rem;
+  }
 }
