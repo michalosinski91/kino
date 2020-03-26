@@ -10,8 +10,14 @@ export default function SearchBar() {
           type="text"
           name="search"
           placeholder="Wpisz coś..."
+          autoComplete="off"
         />
-        <button className="search-bar__button">X</button>
+        <button
+          className="search-bar__button"
+          onClick={e => e.preventDefault()}
+        >
+          X
+        </button>
       </form>
     </div>
   );
