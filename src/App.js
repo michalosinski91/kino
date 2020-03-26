@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
 
 import Navbar from "./layout/Navbar/Navbar";
+import Main from "./layout/Main/Main";
+import Footer from "./layout/Footer/Footer";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 export default function App() {
@@ -9,6 +11,8 @@ export default function App() {
     <div className="container">
       <SearchBar />
       <Navbar />
+      <Main />
+      <Footer />
     </div>
   );
 }

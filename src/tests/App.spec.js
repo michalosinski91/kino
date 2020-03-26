@@ -3,6 +3,8 @@ import { shallow } from "enzyme";
 import App from "../App";
 import Navbar from "../layout/Navbar/Navbar";
 import SearchBar from "../components/SearchBar/SearchBar";
+import Footer from "../layout/Footer/Footer";
+import Main from "../layout/Main/Main";
 
 describe("App", () => {
   let wrapper;
@@ -18,5 +20,13 @@ describe("App", () => {
 
   it("should render a SearchBar component", () => {
     expect(wrapper.containsMatchingElement(<SearchBar />)).toEqual(true);
+  });
+
+  it("should render a Main component", () => {
+    expect(wrapper.containsMatchingElement(<Main />)).toEqual(true);
+  });
+
+  it("should render a Footer component", () => {
+    expect(wrapper.containsMatchingElement(<Footer />)).toEqual(true);
   });
 });
