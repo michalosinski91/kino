@@ -1,3 +1,19 @@
 .nav-search {
+  cursor: pointer;
   margin-left: 2rem;
+
+  &::after {
+    display: block;
+    content: "";
+    height: 1px;
+    border-bottom: 1px solid black;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
 }
