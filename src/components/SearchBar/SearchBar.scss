@@ -5,6 +5,14 @@
   background: linear-gradient(-45deg, #337a58, #383e4e, #493a19);
   background-size: 400% 400%;
   animation: gradient 5s ease infinite;
+  height: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+
+  &--show {
+    opacity: 1;
+    height: 10rem;
+  }
 
   &__form {
     display: flex;

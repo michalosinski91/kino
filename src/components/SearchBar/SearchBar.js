@@ -3,7 +3,7 @@ import "./SearchBar.scss";
 
 export default function SearchBar() {
   return (
-    <div className="search-bar">
+    <div className="search-bar search-bar--show">
       <form className="search-bar__form">
         <input
           className="search-bar__input"
