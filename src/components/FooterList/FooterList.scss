@@ -1,0 +1,12 @@
+.footer-list {
+  list-style: none;
+  display: flex;
+
+  &__item {
+    text-transform: uppercase;
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+}
