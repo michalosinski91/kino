@@ -1,6 +1,10 @@
 import React from "react";
 import "./NavSearch.scss";
 
-export default function NavSearch() {
-  return <div className="nav-search">Wyszukaj</div>;
+export default function NavSearch({ toggleSearchBar }) {
+  return (
+    <div className="nav-search" onClick={toggleSearchBar}>
+      Wyszukaj
+    </div>
+  );
 }

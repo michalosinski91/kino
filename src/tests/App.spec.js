@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import App from "../App";
+import { App } from "../App";
 import Navbar from "../layout/Navbar/Navbar";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Footer from "../layout/Footer/Footer";

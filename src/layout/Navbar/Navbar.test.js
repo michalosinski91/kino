@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import Logo from "../../components/Logo/Logo";
 import NavList from "../../components/NavList/NavList";
 import NavSearch from "../../components/NavSearch/NavSearch";
-import SearchBar from "../../components/SearchBar/SearchBar";
 
 describe("Navbar", () => {
   let wrapper;

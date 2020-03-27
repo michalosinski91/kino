@@ -4,11 +4,24 @@ import SearchBar from "./SearchBar";
 
 describe("SearchBar", () => {
   let wrapper;
+  let mockShowSearchBar = false;
+  const mockToggleSearchBar = jest.fn();
 
-  beforeEach(() => (wrapper = shallow(<SearchBar />)));
+  beforeEach(
+    () =>
+      (wrapper = shallow(
+        <SearchBar
+          showSearchBar={mockShowSearchBar}
+          toggleSearchBar={mockToggleSearchBar}
+        />
+      ))
+  );
 
-  it("should render a <div />", () => {
-    expect(wrapper.find("div").length).toEqual(1);
+  it("should render a <div /> which is hidden initially", () => {
+    const div = wrapper.find("div");
+    expect(div.length).toEqual(1);
+    expect(div.hasClass("search-bar")).toBe(true);
+    expect(div.hasClass("seach-bar--show")).toBe(false);
   });
 
   it("should render a <form />", () => {
@@ -20,6 +33,7 @@ describe("SearchBar", () => {
   });
 
   it("should render a <button />", () => {
-    expect(wrapper.find("button").length).toEqual(1);
+    const button = wrapper.find("button");
+    expect(button.length).toEqual(1);
   });
 });
