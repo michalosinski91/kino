@@ -10,8 +10,8 @@ const mockToggleSearchBar = jest.fn(() => {
   mockShowSearchBar = !mockShowSearchBar;
 });
 
-test("clicking on the button triggers an event to hide the SearchBar", () => {
-  const { container, getByTestId } = render(
+test("clicking on the button triggers an event to hide the SearchBar", async () => {
+  const { getByTestId } = render(
     <SearchBar
       toggleSearchBar={mockToggleSearchBar}
       showSearchBar={mockShowSearchBar}
