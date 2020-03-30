@@ -1,39 +1,28 @@
 import React from "react";
-import { shallow } from "enzyme";
 import SearchBar from "./SearchBar";
+import { render, fireEvent, cleanup } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
-describe("SearchBar", () => {
-  let wrapper;
-  let mockShowSearchBar = false;
-  const mockToggleSearchBar = jest.fn();
+afterEach(cleanup);
 
-  beforeEach(
-    () =>
-      (wrapper = shallow(
-        <SearchBar
-          showSearchBar={mockShowSearchBar}
-          toggleSearchBar={mockToggleSearchBar}
-        />
-      ))
+let mockShowSearchBar = true;
+const mockToggleSearchBar = jest.fn(() => {
+  mockShowSearchBar = !mockShowSearchBar;
+});
+
+test("clicking on the button triggers an event to hide the SearchBar", () => {
+  const { container, getByTestId } = render(
+    <SearchBar
+      toggleSearchBar={mockToggleSearchBar}
+      showSearchBar={mockShowSearchBar}
+    />
   );
-
-  it("should render a <div /> which is hidden initially", () => {
-    const div = wrapper.find("div");
-    expect(div.length).toEqual(1);
-    expect(div.hasClass("search-bar")).toBe(true);
-    expect(div.hasClass("seach-bar--show")).toBe(false);
-  });
-
-  it("should render a <form />", () => {
-    expect(wrapper.find("form").length).toEqual(1);
-  });
-
-  it("should render an <input />", () => {
-    expect(wrapper.find("input").length).toEqual(1);
-  });
-
-  it("should render a <button />", () => {
-    const button = wrapper.find("button");
-    expect(button.length).toEqual(1);
-  });
+  expect(mockToggleSearchBar).toHaveBeenCalledTimes(0);
+  const button = getByTestId("hideSearchBar");
+  fireEvent.click(button);
+  expect(mockToggleSearchBar).toHaveBeenCalledTimes(1);
+  expect(mockShowSearchBar).toBe(false);
+  fireEvent.click(button);
+  expect(mockToggleSearchBar).toHaveBeenCalledTimes(2);
+  expect(mockShowSearchBar).toBe(true);
 });
