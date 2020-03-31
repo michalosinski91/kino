@@ -4,5 +4,8 @@
   "testRegex": "((\\.|/*.)(test|spec))\\.js?$",
   "moduleNameMapper": {
     "\\.(css|scss)$": "identity-obj-proxy"
+  },
+  "transform": {
+    "^.+\\js?$": "babel-jest"
   }
 }

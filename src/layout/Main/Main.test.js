@@ -4,18 +4,12 @@ import { createMemoryHistory } from "history";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Main from "./Main";
-import Home from "../../pages/Home/Home";
-import Films from "../../pages/Films/Films";
-import Calendar from "../../pages/Calendar/Calendar";
-import BoxOffice from "../../pages/BoxOffice/BoxOffice";
-import AboutUs from "../../pages/AboutUs/AboutUs";
-import NotFound from "../../pages/NotFound/NotFound";
 
 afterEach(cleanup);
 
 test("The Main section displays the correct component on change of path", () => {
   const history = createMemoryHistory();
-  const { container, getByTestId, debug } = render(
+  const { getByTestId } = render(
     <Router history={history}>
       <Main />
     </Router>

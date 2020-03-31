@@ -1,7 +1,6 @@
 .main-container {
   grid-column: full-start / full-end;
   grid-row: 3 / 4;
-
-  background-color: blue;
   min-height: 80vh;
+  padding: 2rem;
 }
