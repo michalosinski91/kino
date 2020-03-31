@@ -6,6 +6,12 @@
     cursor: pointer;
     margin: 0 2rem;
 
+    & a,
+    a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+
     &::after {
       display: block;
       content: "";
