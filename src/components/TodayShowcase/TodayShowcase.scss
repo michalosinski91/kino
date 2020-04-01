@@ -2,7 +2,7 @@
   background-color: green;
   display: flex;
   justify-content: space-between;
-  max-height: 30vw;
+  max-height: 40vw;
 
   &__photo {
     background-size: cover;
@@ -16,50 +16,5 @@
     justify-content: space-between;
     align-items: center;
     padding: 2rem 1rem;
-  }
-
-  &__date {
-    justify-content: center;
-  }
-
-  &__date-span {
-    font-size: 9rem;
-    font-weight: 500;
-    writing-mode: vertical-rl;
-  }
-
-  &__schedule {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
-  }
-
-  &__day-container {
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 2rem;
-    border-bottom: 1px solid black;
-  }
-
-  &__day-span {
-    color: #b1b1b1;
-    &--active {
-      color: black;
-    }
-  }
-
-  &__item-container {
-    flex-basis: 80%;
-  }
-
-  &__item {
-    border-bottom: 1px solid black;
-  }
-
-  &__calendar {
-    & p {
-    }
   }
 }

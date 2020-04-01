@@ -2,6 +2,9 @@ import React from "react";
 import "./TodayShowcase.scss";
 import { getTodayDate } from "../../utils/DateFormat";
 
+import Date from "./Date/Date";
+import Schedule from "./Schedule/Schedule";
+
 export default function TodayShowcase() {
   let date = getTodayDate();
   return (
@@ -12,24 +15,8 @@ export default function TodayShowcase() {
         alt="photo"
       />
       <div className="today-showcase__box">
-        <div className="today-showcase__schedule">
-          <div className="today-showcase__day-container">
-            <span className="today-showcase__day-span today-showcase__day-span--active">
-              Dzisiaj
-            </span>
-            <span className="today-showcase__day-span">Jutro</span>
-          </div>
-          <div className="today-showcase__item-container">
-            <div className="today-showcase__item">Test</div>
-            <div className="today-showcase__item">Test</div>
-          </div>
-          <div className="today-showcase__calendar">
-            <p>Przejdź do kalendarza</p>
-          </div>
-        </div>
-        <div className="today-showcase__date">
-          <span className="today-showcase__date-span">{date}</span>
-        </div>
+        <Schedule />
+        <Date date={date} />
       </div>
     </div>
   );
