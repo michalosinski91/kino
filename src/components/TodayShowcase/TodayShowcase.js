@@ -8,7 +8,7 @@ import Schedule from "./Schedule/Schedule";
 export default function TodayShowcase() {
   let date = getTodayDate();
   return (
-    <div className="today-showcase">
+    <section className="today-showcase">
       <img
         className="today-showcase__photo"
         src="https://images.unsplash.com/photo-1585313647787-7a061b5a85a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1309&q=80"
@@ -18,6 +18,6 @@ export default function TodayShowcase() {
         <Schedule />
         <Date date={date} />
       </div>
-    </div>
+    </section>
   );
 }

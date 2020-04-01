@@ -4,7 +4,7 @@ import NewsItem from "./NewsItem/NewsItem";
 
 export default function News() {
   return (
-    <div className="news">
+    <section className="news">
       <h2 className="heading heading--secondary">Aktualności</h2>
       <div className="news__grid">
         <NewsItem />
@@ -16,6 +16,6 @@ export default function News() {
         <NewsItem />
         <NewsItem />
       </div>
-    </div>
+    </section>
   );
 }
