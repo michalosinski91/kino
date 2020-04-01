@@ -27,3 +27,12 @@ body {
     [full-end];
   grid-template-rows: min-content 8rem repeat(2, min-content);
 }
+
+.header {
+  text-transform: uppercase;
+
+  &--secondary {
+    font-size: 3.4rem;
+    font-weight: 400;
+  }
+}

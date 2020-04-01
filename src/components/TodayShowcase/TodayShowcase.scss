@@ -5,8 +5,11 @@
   max-height: 40vw;
 
   &__photo {
-    background-size: cover;
     width: 57.5%;
+
+    & img {
+      object-fit: cover;
+    }
   }
 
   &__box {
