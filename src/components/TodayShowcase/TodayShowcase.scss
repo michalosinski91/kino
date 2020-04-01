@@ -1,5 +1,4 @@
 .today-showcase {
-  background-color: green;
   display: flex;
   justify-content: space-between;
   max-height: 40vw;
@@ -14,7 +13,7 @@
 
   &__box {
     width: 40%;
-    background-color: wheat;
+    background-color: #f3f2f2;
     display: flex;
     justify-content: space-between;
     align-items: center;

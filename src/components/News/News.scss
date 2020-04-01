@@ -1,3 +1,37 @@
+// need to change the layout to grid with gutters
+
 .news {
-  background-color: yellow;
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__item {
+    min-width: 27.5rem;
+    width: 20%;
+    flex-grow: 1;
+
+    border-top: 1px solid black;
+    margin: 1rem;
+    padding: 1rem 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__date {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: 2.8rem;
+  }
+
+  &__content {
+    font-size: 1.6rem;
+    padding: 2rem 0;
+  }
 }

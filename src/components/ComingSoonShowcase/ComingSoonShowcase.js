@@ -5,9 +5,8 @@ import ComingSoonItem from "./ComingSoonItem/ComingSoonItem";
 export default function ComingSoonShowcase() {
   return (
     <div className="coming-soon">
-      <h2 className="header header--secondary">Wkrótce u Nas</h2>
+      <h2 className="heading heading--secondary">Wkrótce u Nas</h2>
       <div className="coming-soon__grid">
-        <ComingSoonItem />
         <ComingSoonItem />
         <ComingSoonItem />
         <ComingSoonItem />

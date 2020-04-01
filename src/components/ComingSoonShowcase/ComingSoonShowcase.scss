@@ -1,6 +1,5 @@
 .coming-soon {
-  margin: 2rem 0;
-  background-color: rgb(176, 218, 94);
+  margin: 4rem 0;
 
   &__grid {
     display: flex;
@@ -9,7 +8,8 @@
   }
 
   &__item {
-    width: 25%;
+    min-width: 30rem;
+    width: 20%;
     flex-grow: 1;
 
     border-top: 1px solid black;
@@ -34,14 +34,14 @@
   }
 
   &__date {
-    font-size: 1.6rem;
+    font-size: 2.8rem;
     & strong {
       font-weight: 600;
     }
   }
 
   &__title {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     font-weight: 400;
     font-style: italic;
   }
