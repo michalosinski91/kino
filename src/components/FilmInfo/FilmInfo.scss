@@ -1,0 +1,32 @@
+.film-info {
+  &__container {
+    border-top: 1px solid black;
+    height: 25rem;
+    padding-top: 2rem;
+    margin: 1rem;
+    font-size: 1.4rem;
+    column-count: 4;
+    column-gap: 4rem;
+  }
+
+  &__details {
+    height: 100%;
+    & ul {
+      list-style: none;
+
+      & li {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &__cast {
+    height: 100%;
+    & ul {
+      list-style: none;
+      & li {
+        margin-top: 0.7rem;
+      }
+    }
+  }
+}
