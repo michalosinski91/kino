@@ -6,6 +6,7 @@ import Films from "../../pages/Films/Films";
 import Calendar from "../../pages/Calendar/Calendar";
 import BoxOffice from "../../pages/BoxOffice/BoxOffice";
 import AboutUs from "../../pages/AboutUs/AboutUs";
+import Film from "../../pages/Film/Film";
 import NotFound from "../../pages/NotFound/NotFound";
 
 export default function Main() {
@@ -16,6 +17,7 @@ export default function Main() {
         <Route path="/repertuar" component={Films} />
         <Route path="/kalendarz" component={Calendar} />
         <Route path="/bilety" component={BoxOffice} />
+        <Route path="/film/:id?" component={Film} />
         <Route path="/" exact component={Home} />
         <Route component={NotFound} />
       </Switch>

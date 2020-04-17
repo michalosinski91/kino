@@ -15,52 +15,53 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              sourceMap: isDevelopment
-            }
-          }
-        ]
+              sourceMap: isDevelopment,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
           {
-            loader: "file-loader"
-          }
-        ]
+            loader: "file-loader",
+          },
+        ],
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
-          }
-        ]
-      }
-    ]
+            loader: "html-loader",
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css"
+      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
     new HtmlWebPackPlugin({
       template: "./public/index.html",
-      filename: "./index.html"
+      filename: "./index.html",
     }),
-    new FaviconsWebpackPlugin("./public/assets/logo.png")
+    new FaviconsWebpackPlugin("./public/assets/logo.png"),
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".scss"]
+    extensions: [".js", ".jsx", ".scss"],
   },
   devServer: {
-    historyApiFallback: true
-  }
+    publicPath: "/",
+    historyApiFallback: true,
+  },
 };
