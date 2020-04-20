@@ -1,0 +1,33 @@
+.ticket-info {
+  width: 45%;
+  margin: 1rem;
+
+  & h3 {
+    margin-left: 0;
+  }
+
+  &__opening {
+  }
+
+  &__opening-days {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
+
+  &__text {
+    margin-top: 3rem;
+    font-size: 1.6rem;
+
+    & h4 {
+      margin-top: 2rem;
+    }
+
+    & p {
+      margin-top: 1rem;
+    }
+  }
+}

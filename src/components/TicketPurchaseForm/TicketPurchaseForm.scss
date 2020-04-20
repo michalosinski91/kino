@@ -1,0 +1,27 @@
+.ticket-purchase {
+  width: 50%;
+  margin: 1rem;
+  font-size: 1.6rem;
+
+  & h3 {
+    margin-left: 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      margin-top: 1rem;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    height: 5rem;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 2rem;
+  }
+}
