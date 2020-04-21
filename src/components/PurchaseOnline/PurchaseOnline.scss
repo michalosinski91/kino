@@ -1,0 +1,24 @@
+.purchase-online {
+  margin: 1rem;
+  width: 40%;
+  & h3 {
+    margin-left: 0;
+  }
+
+  &__button {
+    border: 1px solid black;
+    background-color: #fffcfc;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    height: 5rem;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+
+    &:hover {
+      background-color: black;
+      color: #fffcfc;
+    }
+  }
+}
