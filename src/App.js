@@ -1,6 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { Switch, Route, Link } from "react-router-dom";
 
 import Navbar from "./layout/Navbar/Navbar";
 import Main from "./layout/Main/Main";
@@ -9,12 +7,20 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 //Redux
 import { connect } from "react-redux";
-import { toggleSearchBar } from "./store/actions/actions";
+import {
+  toggleSearchBar,
+  toggleTicketPurchaseForm,
+} from "./store/actions/actions";
 
 // named export of App component for testing purposes.
 // the default export is the connect component, which, if imported in the test file
 // would return the wrapper component, and not the App component itself
-export const App = ({ showSearchBar, toggleSearchBar }) => {
+export const App = ({
+  showSearchBar,
+  toggleSearchBar,
+  showTicketPurchaseForm,
+  toggleTicketPurchaseForm,
+}) => {
   return (
     <div className="container">
       <SearchBar
@@ -22,21 +28,26 @@ export const App = ({ showSearchBar, toggleSearchBar }) => {
         toggleSearchBar={toggleSearchBar}
       />
       <Navbar toggleSearchBar={toggleSearchBar} />
-      <Main />
+      <Main
+        showTicketPurchaseForm={showTicketPurchaseForm}
+        toggleTicketPurchaseForm={toggleTicketPurchaseForm}
+      />
       <Footer />
     </div>
   );
 };
 
 // state
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    showSearchBar: state.showSearchBar
+    showSearchBar: state.showSearchBar,
+    showTicketPurchaseForm: state.showTicketPurchaseForm,
   };
 };
 
 const mapDispatchToProps = {
-  toggleSearchBar
+  toggleSearchBar,
+  toggleTicketPurchaseForm,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

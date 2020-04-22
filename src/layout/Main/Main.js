@@ -10,14 +10,25 @@ import FilmSelect from "../../pages/FilmSelect/FilmSelect";
 import NotFound from "../../pages/NotFound/NotFound";
 import FilmDetail from "../../components/FilmDetail/FilmDetail";
 
-export default function Main() {
+export default function Main({
+  showTicketPurchaseForm,
+  toggleTicketPurchaseForm,
+}) {
   return (
     <div className="main-container" data-testid="main-container">
       <Switch>
         <Route path="/onas" component={AboutUs} />
         <Route path="/repertuar" component={Films} />
         <Route path="/kalendarz" component={Calendar} />
-        <Route path="/bilety" component={BoxOffice} />
+        <Route
+          path="/bilety"
+          render={() => (
+            <BoxOffice
+              showTicketPurchaseForm={showTicketPurchaseForm}
+              toggleTicketPurchaseForm={toggleTicketPurchaseForm}
+            />
+          )}
+        />
         <Route path="/film/:id" component={FilmDetail} />
         <Route path="/film" component={FilmSelect} />
         <Route path="/" exact component={Home} />

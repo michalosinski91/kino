@@ -2,9 +2,12 @@ import React from "react";
 import "./TicketPurchaseForm.scss";
 import PurchaseSummary from "../PurchaseSummary/PurchaseSummary";
 
-export default function TicketPurchaseForm() {
+export default function TicketPurchaseForm({ toggleTicketPurchaseForm }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <div className="ticket-purchase">
+    <div className="ticket-purchase" onSubmit={handleSubmit}>
       <h3 className="heading heading--tertiary">Zakup bilety online</h3>
       <form className="ticket-purchase__form">
         <label>
@@ -65,6 +68,12 @@ export default function TicketPurchaseForm() {
         </label>
         <PurchaseSummary />
         <button className="ticket-purchase__button">Przejdź do zapłaty</button>
+        <button
+          className="ticket-purchase__cancel"
+          onClick={toggleTicketPurchaseForm}
+        >
+          Anuluj zakup
+        </button>
       </form>
     </div>
   );

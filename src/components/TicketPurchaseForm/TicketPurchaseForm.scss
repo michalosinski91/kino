@@ -1,7 +1,10 @@
 .ticket-purchase {
-  width: 50%;
-  margin: 1rem;
+  width: 80%;
   font-size: 1.6rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   & h3 {
     margin-left: 0;
@@ -23,5 +26,16 @@
     background-color: black;
     color: white;
     font-size: 2rem;
+  }
+
+  &__cancel {
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 20rem;
+    font-size: 1.6rem;
   }
 }
