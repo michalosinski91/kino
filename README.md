@@ -2,7 +2,7 @@ Kino - Cinema
 
 TODO:
 
-- About page
+- Contact Page - contact details, form, map (google or opensourcemap?)
 - Mock Film DB
 - Component Animations
 - Media Queries
