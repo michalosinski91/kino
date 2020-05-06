@@ -5,3 +5,7 @@ export const toggleSearchBar = () => ({
 export const toggleTicketPurchaseForm = () => ({
   type: "TOGGLE_TICKETPURCHASEFORM",
 });
+
+export const toggleFilter = () => ({
+  type: "TOGGLE_FILTER",
+});

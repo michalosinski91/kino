@@ -13,13 +13,20 @@ import FilmDetail from "../../components/FilmDetail/FilmDetail";
 export default function Main({
   showTicketPurchaseForm,
   toggleTicketPurchaseForm,
+  showFilter,
+  toggleFilter,
 }) {
   return (
     <div className="main-container" data-testid="main-container">
       <Switch>
         <Route path="/onas" component={AboutUs} />
         <Route path="/repertuar" component={Films} />
-        <Route path="/kalendarz" component={Calendar} />
+        <Route
+          path="/kalendarz"
+          render={() => (
+            <Calendar showFilter={showFilter} toggleFilter={toggleFilter} />
+          )}
+        />
         <Route
           path="/bilety"
           render={() => (

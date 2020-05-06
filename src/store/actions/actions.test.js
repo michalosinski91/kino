@@ -13,3 +13,10 @@ test("should create an action to toggle 'show' class on TicketPurchaseForm", () 
   };
   expect(actions.toggleTicketPurchaseForm()).toEqual(expectedAction);
 });
+
+test("should create an action to toggle 'show' class on Filter", () => {
+  const expectedAction = {
+    type: "TOGGLE_FILTER",
+  };
+  expect(actions.toggleFilter()).toEqual(expectedAction);
+});

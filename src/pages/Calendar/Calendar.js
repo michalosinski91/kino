@@ -4,11 +4,11 @@ import CalendarHeader from "../../components/CalendarHeader/CalendarHeader";
 import CalendarSchedule from "../../components/CalendarSchedule/CalendarSchedule";
 import Filter from "../../components/Filter/Filter";
 
-export default function Calendar() {
+export default function Calendar({ showFilter, toggleFilter }) {
   return (
     <section data-testid="calendar" className="calendar">
-      <CalendarHeader />
-      <Filter />
+      <CalendarHeader toggleFilter={toggleFilter} />
+      <Filter showFilter={showFilter} />
       <CalendarSchedule />
     </section>
   );

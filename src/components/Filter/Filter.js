@@ -1,9 +1,12 @@
 import React from "react";
 import "./Filter.scss";
 
-export default function Filter() {
+export default function Filter({ showFilter }) {
   return (
-    <div className="filter">
+    <div
+      className={!showFilter ? "filter" : "filter filter--show"}
+      data-testid="filterComponent"
+    >
       <div className="filter__container">
         <h3 className="heading heading--tertiary">Gatunek:</h3>
         <li className="filter__checklist">

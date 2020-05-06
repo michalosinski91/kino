@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import {
   toggleSearchBar,
   toggleTicketPurchaseForm,
+  toggleFilter,
 } from "./store/actions/actions";
 
 // named export of App component for testing purposes.
@@ -20,6 +21,8 @@ export const App = ({
   toggleSearchBar,
   showTicketPurchaseForm,
   toggleTicketPurchaseForm,
+  toggleFilter,
+  showFilter,
 }) => {
   return (
     <div className="container">
@@ -31,6 +34,8 @@ export const App = ({
       <Main
         showTicketPurchaseForm={showTicketPurchaseForm}
         toggleTicketPurchaseForm={toggleTicketPurchaseForm}
+        showFilter={showFilter}
+        toggleFilter={toggleFilter}
       />
       <Footer />
     </div>
@@ -42,12 +47,14 @@ const mapStateToProps = (state) => {
   return {
     showSearchBar: state.showSearchBar,
     showTicketPurchaseForm: state.showTicketPurchaseForm,
+    showFilter: state.showFilter,
   };
 };
 
 const mapDispatchToProps = {
   toggleSearchBar,
   toggleTicketPurchaseForm,
+  toggleFilter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

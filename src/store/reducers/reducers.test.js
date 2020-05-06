@@ -4,6 +4,7 @@ test("should return the empty initial state", () => {
   expect(reducer(undefined, {})).toEqual({
     showSearchBar: false,
     showTicketPurchaseForm: false,
+    showFilter: false,
   });
 });
 
@@ -56,5 +57,17 @@ test("should show TicketPurchaseForm if it is hidden", () => {
     )
   ).toEqual({
     showTicketPurchaseForm: true,
+  });
+});
+
+test("should hide Filter if it is shown", () => {
+  expect(reducer({ showFilter: true }, { type: "TOGGLE_FILTER" })).toEqual({
+    showFilter: false,
+  });
+});
+
+test("should show Filter if it is hidden", () => {
+  expect(reducer({ showFilter: false }, { type: "TOGGLE_FILTER" })).toEqual({
+    showFilter: true,
   });
 });

@@ -1,6 +1,7 @@
 const initialState = {
   showSearchBar: false,
   showTicketPurchaseForm: false,
+  showFilter: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showTicketPurchaseForm: !state.showTicketPurchaseForm,
+      };
+    case "TOGGLE_FILTER":
+      return {
+        ...state,
+        showFilter: !state.showFilter,
       };
     default:
       return state;

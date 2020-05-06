@@ -4,7 +4,7 @@ import "./CalendarHeader.scss";
 //TODO: add icon to Filter-Button
 //      connect filter-button to state
 
-export default function CalendarHeader() {
+export default function CalendarHeader({ toggleFilter }) {
   return (
     <div className="calendar-header">
       <div className="calendar-header__date-picker">
@@ -16,7 +16,11 @@ export default function CalendarHeader() {
           &rarr;
         </div>
       </div>
-      <div className="calendar-header__filter-button">
+      <div
+        className="calendar-header__filter-button"
+        onClick={toggleFilter}
+        data-testid="toggleFilterBtn"
+      >
         <span>Filtruj</span>
       </div>
     </div>
