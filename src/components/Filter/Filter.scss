@@ -1,0 +1,47 @@
+.filter {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1rem;
+
+  & h3 {
+    width: 8rem;
+    margin-right: 4rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__checklist {
+    list-style: none;
+  }
+
+  &__checklist-button {
+    font-size: 1.8rem;
+    height: 3rem;
+    border: 1px solid black;
+    border-radius: 2rem;
+    background-color: #fffcfc;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    padding: 0 3rem;
+    margin-right: 2rem;
+
+    &:hover {
+      color: #fffcfc;
+      background-color: black;
+    }
+
+    &--checked {
+      color: #fffcfc;
+      background-color: black;
+
+      &:hover {
+        color: black;
+        background-color: #b3b3b3;
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 .calendar-schedule {
+  border-top: 2px solid black;
+
   &__day {
     display: flex;
     height: 30rem;
-    margin: 1rem 0;
+    margin: 2rem 0;
     border-bottom: 2px solid black;
     padding-bottom: 2rem;
   }
