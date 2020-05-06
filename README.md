@@ -4,6 +4,7 @@ TODO:
 
 - About page
 - Mock Film DB
+- Component Animations
 - Media Queries
 - Form design to improve - staggered display
 - Money formatting helper
