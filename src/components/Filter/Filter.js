@@ -1,7 +1,14 @@
 import React from "react";
 import "./Filter.scss";
+import FilterBtn from "./FilterBtn/FilterBtn";
 
-export default function Filter({ showFilter }) {
+export default function Filter({
+  showFilter,
+  toggleGenreFilter,
+  toggleAgeFilter,
+  ageList,
+  genreList,
+}) {
   return (
     <div
       className={!showFilter ? "filter" : "filter filter--show"}
@@ -10,26 +17,35 @@ export default function Filter({ showFilter }) {
       <div className="filter__container">
         <h3 className="heading heading--tertiary">Gatunek:</h3>
         <li className="filter__checklist">
-          <button className="filter__checklist-button">Komedia</button>
-          <button className="filter__checklist-button filter__checklist-button--checked">
-            Dramat
-          </button>
-          <button className="filter__checklist-button">Akcja</button>
-          <button className="filter__checklist-button">Thriller</button>
-          <button className="filter__checklist-button">Animacja</button>
-          <button className="filter__checklist-button">Romans</button>
-          <button className="filter__checklist-button">Horror</button>
+          {!genreList
+            ? null
+            : genreList.map(({ name, filter }) => {
+                return (
+                  <FilterBtn
+                    key={name}
+                    toggleFunction={toggleGenreFilter}
+                    name={name}
+                    filter={filter}
+                  />
+                );
+              })}
         </li>
       </div>
       <div className="filter__container">
         <h3 className="heading heading--tertiary">Wiek:</h3>
         <li className="filter__checklist">
-          <button className="filter__checklist-button">Familijny</button>
-          <button className="filter__checklist-button filter__checklist-button--checked">
-            12+
-          </button>
-          <button className="filter__checklist-button">15+</button>
-          <button className="filter__checklist-button">18+</button>
+          {!ageList
+            ? null
+            : ageList.map(({ category, filter }) => {
+                return (
+                  <FilterBtn
+                    key={category}
+                    toggleFunction={toggleAgeFilter}
+                    name={category}
+                    filter={filter}
+                  />
+                );
+              })}
         </li>
       </div>
     </div>

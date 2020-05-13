@@ -5,6 +5,54 @@ test("should return the empty initial state", () => {
     showSearchBar: false,
     showTicketPurchaseForm: false,
     showFilter: false,
+    genres: [
+      {
+        name: "Komedia",
+        filter: false,
+      },
+      {
+        name: "Dramat",
+        filter: false,
+      },
+      {
+        name: "Akcja",
+        filter: false,
+      },
+      {
+        name: "Thriller",
+        filter: false,
+      },
+      {
+        name: "Animacja",
+        filter: false,
+      },
+      {
+        name: "Romans",
+        filter: false,
+      },
+      {
+        name: "Horror",
+        filter: false,
+      },
+    ],
+    age: [
+      {
+        category: "Familijny",
+        filter: false,
+      },
+      {
+        category: "12+",
+        filter: false,
+      },
+      {
+        category: "15+",
+        filter: false,
+      },
+      {
+        category: "18+",
+        filter: false,
+      },
+    ],
   });
 });
 
@@ -69,5 +117,85 @@ test("should hide Filter if it is shown", () => {
 test("should show Filter if it is hidden", () => {
   expect(reducer({ showFilter: false }, { type: "TOGGLE_FILTER" })).toEqual({
     showFilter: true,
+  });
+});
+
+test("should toggle genre.filter to true if it is false", () => {
+  const mockGenre = "Komedia";
+  expect(
+    reducer(
+      {
+        genres: [
+          { name: mockGenre, filter: false },
+          { name: "Dramat", filter: false },
+        ],
+      },
+      { type: "TOGGLE_GENRE_FILTER", genre: mockGenre }
+    )
+  ).toEqual({
+    genres: [
+      { name: mockGenre, filter: true },
+      { name: "Dramat", filter: false },
+    ],
+  });
+});
+
+test("should toggle genre.filter to false if it is true", () => {
+  const mockGenre = "Romans";
+  expect(
+    reducer(
+      {
+        genres: [
+          { name: mockGenre, filter: true },
+          { name: "Dramat", filter: true },
+        ],
+      },
+      { type: "TOGGLE_GENRE_FILTER", genre: mockGenre }
+    )
+  ).toEqual({
+    genres: [
+      { name: mockGenre, filter: false },
+      { name: "Dramat", filter: true },
+    ],
+  });
+});
+
+test("should toggle age.filter to true if it is false", () => {
+  const mockAge = "12+";
+  expect(
+    reducer(
+      {
+        age: [
+          { category: mockAge, filter: false },
+          { category: "15+", filter: false },
+        ],
+      },
+      { type: "TOGGLE_AGE_FILTER", age: mockAge }
+    )
+  ).toEqual({
+    age: [
+      { category: mockAge, filter: true },
+      { category: "15+", filter: false },
+    ],
+  });
+});
+
+test("should toggle age.filter to false if it is true", () => {
+  const mockAge = "15+";
+  expect(
+    reducer(
+      {
+        age: [
+          { category: mockAge, filter: true },
+          { category: "18+", filter: true },
+        ],
+      },
+      { type: "TOGGLE_AGE_FILTER", age: mockAge }
+    )
+  ).toEqual({
+    age: [
+      { category: mockAge, filter: false },
+      { category: "18+", filter: true },
+    ],
   });
 });

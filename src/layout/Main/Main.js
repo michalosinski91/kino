@@ -15,6 +15,10 @@ export default function Main({
   toggleTicketPurchaseForm,
   showFilter,
   toggleFilter,
+  toggleGenreFilter,
+  toggleAgeFilter,
+  ageList,
+  genreList,
 }) {
   return (
     <div className="main-container" data-testid="main-container">
@@ -24,7 +28,14 @@ export default function Main({
         <Route
           path="/kalendarz"
           render={() => (
-            <Calendar showFilter={showFilter} toggleFilter={toggleFilter} />
+            <Calendar
+              showFilter={showFilter}
+              toggleFilter={toggleFilter}
+              toggleGenreFilter={toggleGenreFilter}
+              toggleAgeFilter={toggleAgeFilter}
+              ageList={ageList}
+              genreList={genreList}
+            />
           )}
         />
         <Route

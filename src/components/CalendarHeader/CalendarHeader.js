@@ -1,8 +1,7 @@
 import React from "react";
 import "./CalendarHeader.scss";
 
-//TODO: add icon to Filter-Button
-//      connect filter-button to state
+//TODO: add icon & hover/click styling to Filter-Button
 
 export default function CalendarHeader({ toggleFilter }) {
   return (

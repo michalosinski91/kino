@@ -11,6 +11,8 @@ import {
   toggleSearchBar,
   toggleTicketPurchaseForm,
   toggleFilter,
+  toggleGenreFilter,
+  toggleAgeFilter,
 } from "./store/actions/actions";
 
 // named export of App component for testing purposes.
@@ -23,6 +25,10 @@ export const App = ({
   toggleTicketPurchaseForm,
   toggleFilter,
   showFilter,
+  toggleGenreFilter,
+  toggleAgeFilter,
+  ageList,
+  genreList,
 }) => {
   return (
     <div className="container">
@@ -36,6 +42,10 @@ export const App = ({
         toggleTicketPurchaseForm={toggleTicketPurchaseForm}
         showFilter={showFilter}
         toggleFilter={toggleFilter}
+        toggleGenreFilter={toggleGenreFilter}
+        toggleAgeFilter={toggleAgeFilter}
+        ageList={ageList}
+        genreList={genreList}
       />
       <Footer />
     </div>
@@ -48,6 +58,8 @@ const mapStateToProps = (state) => {
     showSearchBar: state.showSearchBar,
     showTicketPurchaseForm: state.showTicketPurchaseForm,
     showFilter: state.showFilter,
+    ageList: state.age,
+    genreList: state.genres,
   };
 };
 
@@ -55,6 +67,8 @@ const mapDispatchToProps = {
   toggleSearchBar,
   toggleTicketPurchaseForm,
   toggleFilter,
+  toggleGenreFilter,
+  toggleAgeFilter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

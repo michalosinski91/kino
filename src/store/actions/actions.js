@@ -9,3 +9,13 @@ export const toggleTicketPurchaseForm = () => ({
 export const toggleFilter = () => ({
   type: "TOGGLE_FILTER",
 });
+
+export const toggleGenreFilter = (genre) => ({
+  type: "TOGGLE_GENRE_FILTER",
+  genre,
+});
+
+export const toggleAgeFilter = (age) => ({
+  type: "TOGGLE_AGE_FILTER",
+  age,
+});

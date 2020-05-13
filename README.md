@@ -9,6 +9,7 @@ TODO:
 - Form design to improve - staggered display
 - Money formatting helper
 - Link DB to view
+- Implement filter functionality once film DB is linked
 
 Issues:
 
