@@ -19,12 +19,13 @@ export default function Main({
   toggleAgeFilter,
   ageList,
   genreList,
+  films,
 }) {
   return (
     <div className="main-container" data-testid="main-container">
       <Switch>
         <Route path="/onas" component={AboutUs} />
-        <Route path="/repertuar" component={Films} />
+        <Route path="/repertuar" render={() => <Films films={films} />} />
         <Route
           path="/kalendarz"
           render={() => (
@@ -35,6 +36,7 @@ export default function Main({
               toggleAgeFilter={toggleAgeFilter}
               ageList={ageList}
               genreList={genreList}
+              films={films}
             />
           )}
         />
@@ -44,12 +46,13 @@ export default function Main({
             <BoxOffice
               showTicketPurchaseForm={showTicketPurchaseForm}
               toggleTicketPurchaseForm={toggleTicketPurchaseForm}
+              films={films}
             />
           )}
         />
-        <Route path="/film/:id" component={FilmDetail} />
-        <Route path="/film" component={FilmSelect} />
-        <Route path="/" exact component={Home} />
+        <Route path="/film/:id" render={() => <FilmDetail films={films} />} />
+        <Route path="/film" render={() => <FilmSelect films={films} />} />
+        <Route path="/" exact render={() => <Home films={films} />} />
         <Route component={NotFound} />
       </Switch>
     </div>

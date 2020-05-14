@@ -38,3 +38,10 @@ test("should create an action to toggle a age filter", () => {
   };
   expect(actions.toggleAgeFilter(age)).toEqual(expectedAction);
 });
+
+test("should fetch films from the DB", () => {
+  const expectedAction = {
+    type: "GET_MOVIES",
+  };
+  expect(actions.getMovies()).toEqual(expectedAction);
+});

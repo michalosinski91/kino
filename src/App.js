@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Navbar from "./layout/Navbar/Navbar";
 import Main from "./layout/Main/Main";
@@ -13,6 +13,7 @@ import {
   toggleFilter,
   toggleGenreFilter,
   toggleAgeFilter,
+  getMovies,
 } from "./store/actions/actions";
 
 // named export of App component for testing purposes.
@@ -29,7 +30,14 @@ export const App = ({
   toggleAgeFilter,
   ageList,
   genreList,
+  getMovies,
+  films,
 }) => {
+  // on page load, fetch a list of films from the DB
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <div className="container">
       <SearchBar
@@ -46,6 +54,7 @@ export const App = ({
         toggleAgeFilter={toggleAgeFilter}
         ageList={ageList}
         genreList={genreList}
+        films={films}
       />
       <Footer />
     </div>
@@ -60,6 +69,7 @@ const mapStateToProps = (state) => {
     showFilter: state.showFilter,
     ageList: state.age,
     genreList: state.genres,
+    films: state.films,
   };
 };
 
@@ -69,6 +79,7 @@ const mapDispatchToProps = {
   toggleFilter,
   toggleGenreFilter,
   toggleAgeFilter,
+  getMovies,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

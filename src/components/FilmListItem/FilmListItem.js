@@ -2,19 +2,18 @@ import React from "react";
 import "./FilmListItem.scss";
 import { Link } from "react-router-dom";
 
-export default function FilmListItem() {
-  let id = "1";
+export default function FilmListItem({ film }) {
   return (
-    <Link to={`/film/${id}`} className="film-list-item">
+    <Link to={`/film/${film.id}`} className="film-list-item">
       <img
-        src="https://images.unsplash.com/photo-1582691236485-4d0850eb36e3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=632&q=80"
-        alt="photo"
+        src={film.poster}
+        alt={film.title}
         className="film-list-item__photo"
       />
       <p className="film-list-item__date">
         <strong>03.04</strong> 16.00
       </p>
-      <p className="film-list-item__title">Test Title</p>
+      <p className="film-list-item__title">{film.title}</p>
     </Link>
   );
 }

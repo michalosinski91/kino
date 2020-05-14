@@ -19,3 +19,7 @@ export const toggleAgeFilter = (age) => ({
   type: "TOGGLE_AGE_FILTER",
   age,
 });
+
+export const getMovies = () => ({
+  type: "GET_MOVIES",
+});

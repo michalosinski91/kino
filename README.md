@@ -3,13 +3,13 @@ Kino - Cinema
 TODO:
 
 - Contact Page - contact details, form, map (google or opensourcemap?)
-- Mock Film DB
 - Component Animations
 - Media Queries
 - Form design to improve - staggered display
 - Money formatting helper
-- Link DB to view
 - Implement filter functionality once film DB is linked
+- Aktualnosci - connect to CMS?
+- Repertuar + Home Page - Improve layout - use grid
 
 Issues:
 

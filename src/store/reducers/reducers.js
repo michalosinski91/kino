@@ -1,22 +1,12 @@
+import movieData from "../../db/movies.json";
+
 const initialState = {
   showSearchBar: false,
   showTicketPurchaseForm: false,
   showFilter: false,
   genres: [
     {
-      name: "Komedia",
-      filter: false,
-    },
-    {
-      name: "Dramat",
-      filter: false,
-    },
-    {
       name: "Akcja",
-      filter: false,
-    },
-    {
-      name: "Thriller",
       filter: false,
     },
     {
@@ -24,11 +14,27 @@ const initialState = {
       filter: false,
     },
     {
-      name: "Romans",
+      name: "Dramat",
       filter: false,
     },
     {
       name: "Horror",
+      filter: false,
+    },
+    {
+      name: "Komedia",
+      filter: false,
+    },
+    {
+      name: "Rodzinny",
+      filter: false,
+    },
+    {
+      name: "Romans",
+      filter: false,
+    },
+    {
+      name: "Thriller",
       filter: false,
     },
   ],
@@ -38,18 +44,15 @@ const initialState = {
       filter: false,
     },
     {
-      category: "12+",
+      category: "13+",
       filter: false,
     },
     {
-      category: "15+",
-      filter: false,
-    },
-    {
-      category: "18+",
+      category: "17+",
       filter: false,
     },
   ],
+  films: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -91,6 +94,11 @@ const reducer = (state = initialState, action) => {
           }
           return item;
         }),
+      };
+    case "GET_MOVIES":
+      return {
+        ...state,
+        films: movieData,
       };
     default:
       return state;
