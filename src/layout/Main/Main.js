@@ -20,6 +20,8 @@ export default function Main({
   ageList,
   genreList,
   films,
+  calendar,
+  getCalendar,
 }) {
   return (
     <div className="main-container" data-testid="main-container">
@@ -37,6 +39,8 @@ export default function Main({
               ageList={ageList}
               genreList={genreList}
               films={films}
+              calendar={calendar}
+              getCalendar={getCalendar}
             />
           )}
         />
@@ -47,12 +51,20 @@ export default function Main({
               showTicketPurchaseForm={showTicketPurchaseForm}
               toggleTicketPurchaseForm={toggleTicketPurchaseForm}
               films={films}
+              calendar={calendar}
+              getCalendar={getCalendar}
             />
           )}
         />
         <Route path="/film/:id" render={() => <FilmDetail films={films} />} />
         <Route path="/film" render={() => <FilmSelect films={films} />} />
-        <Route path="/" exact render={() => <Home films={films} />} />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <Home films={films} calendar={calendar} getCalendar={getCalendar} />
+          )}
+        />
         <Route component={NotFound} />
       </Switch>
     </div>

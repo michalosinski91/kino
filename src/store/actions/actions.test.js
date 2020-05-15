@@ -45,3 +45,16 @@ test("should fetch films from the DB", () => {
   };
   expect(actions.getMovies()).toEqual(expectedAction);
 });
+
+test("should fetch calendar schedule for a given month from the DB", () => {
+  const month = "05";
+  const year = "2020";
+  const expectedAction = {
+    type: "GET_CALENDAR",
+    payload: {
+      month,
+      year,
+    },
+  };
+  expect(actions.getCalendar(month, year)).toEqual(expectedAction);
+});

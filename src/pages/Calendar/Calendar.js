@@ -11,10 +11,13 @@ export default function Calendar({
   toggleAgeFilter,
   ageList,
   genreList,
+  calendar,
+  getCalendar,
+  films,
 }) {
   return (
     <section data-testid="calendar" className="calendar">
-      <CalendarHeader toggleFilter={toggleFilter} />
+      <CalendarHeader toggleFilter={toggleFilter} getCalendar={getCalendar} />
       <Filter
         showFilter={showFilter}
         toggleGenreFilter={toggleGenreFilter}
@@ -22,7 +25,7 @@ export default function Calendar({
         ageList={ageList}
         genreList={genreList}
       />
-      <CalendarSchedule />
+      <CalendarSchedule calendar={calendar} films={films} />
     </section>
   );
 }

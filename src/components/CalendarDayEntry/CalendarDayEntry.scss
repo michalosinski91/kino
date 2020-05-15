@@ -1,0 +1,18 @@
+.day-entry {
+  display: flex;
+  height: 30rem;
+  margin: 2rem 0;
+  border-bottom: 2px solid black;
+  padding-bottom: 2rem;
+
+  &__date {
+    height: 100%;
+    min-width: 12.5rem;
+    font-size: 6rem;
+  }
+
+  &__film-container {
+    height: 100%;
+    display: flex;
+  }
+}

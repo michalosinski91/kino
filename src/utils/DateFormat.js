@@ -4,6 +4,8 @@ const currentMonth = todayDate.getMonth();
 const currentYear = todayDate.getFullYear();
 
 const tomorrowDate = getTomorrowDate(todayDate);
+const tomorrowDay = tomorrowDate.getDate();
+const tomorrowMonth = tomorrowDate.getMonth();
 
 // gets the next day date object
 function getTomorrowDate(today) {
@@ -15,7 +17,7 @@ function getTomorrowDate(today) {
 // checks the length of the date string
 // if it is single characters, it adds 0 to the front to make it DD format
 // else, it returns the string
-function formatDate(str) {
+export function formatDate(str) {
   return str.length > 1 ? str : "0" + str;
 }
 
@@ -31,9 +33,9 @@ export function getCurrentDayMonthString() {
 
 // returns next day & month in dd.mm format
 export function getTomorrowDayMonthString() {
-  let month = (1 + tomorrowDate.getMonth()).toString();
+  let month = (1 + tomorrowMonth).toString();
   month = formatDate(month);
-  let day = tomorrowDate.getDate().toString();
+  let day = tomorrowDay.toString();
   day = formatDate(day);
   return `${day}.${month}`;
 }
@@ -46,4 +48,11 @@ export function getCurrentMonthYearString() {
   return `${month}.${year}`;
 }
 
+export function getCurrentMonthNumber() {
+  return currentMonth + 1;
+}
+
+export function getCurrentYearNumber() {
+  return currentYear;
+}
 //

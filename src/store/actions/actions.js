@@ -23,3 +23,11 @@ export const toggleAgeFilter = (age) => ({
 export const getMovies = () => ({
   type: "GET_MOVIES",
 });
+
+export const getCalendar = (month, year) => ({
+  type: "GET_CALENDAR",
+  payload: {
+    month,
+    year,
+  },
+});

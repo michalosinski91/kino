@@ -1,19 +1,8 @@
 import React from "react";
 import "./FilmInfo.scss";
+import { formatAgeRating } from "../../utils/FilmFormatting";
 
 export default function FilmInfo({ film }) {
-  function getAgeRating(rating) {
-    let ageRating = "Brak informacji";
-    if (rating == "R") {
-      ageRating = "17+";
-    } else if (rating == "PG-13") {
-      ageRating = "13+";
-    } else if (rating == "PG" || rating == "G") {
-      ageRating = "Familijny";
-    }
-    return ageRating;
-  }
-
   let actors = film.actors.split(", ");
 
   return (
@@ -48,7 +37,7 @@ export default function FilmInfo({ film }) {
             </li>
             <li>
               <strong>Wiek: </strong>
-              {getAgeRating(film.rated)}
+              {formatAgeRating(film.rated)}
             </li>
           </ul>
         </div>

@@ -1,4 +1,5 @@
 import movieData from "../../db/movies.json";
+import calendarData from "../../db/calendar.json";
 
 const initialState = {
   showSearchBar: false,
@@ -53,6 +54,7 @@ const initialState = {
     },
   ],
   films: [],
+  calendar: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -99,6 +101,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         films: movieData,
+      };
+    case "GET_CALENDAR":
+      return {
+        ...state,
+        calendar: calendarData.filter(
+          (calendarEntry) =>
+            calendarEntry.month == action.payload.month &&
+            calendarEntry.year == action.payload.year
+        ),
       };
     default:
       return state;

@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
 
+import {
+  getCurrentMonthNumber,
+  getCurrentYearNumber,
+} from "./utils/DateFormat";
+
 import Navbar from "./layout/Navbar/Navbar";
 import Main from "./layout/Main/Main";
 import Footer from "./layout/Footer/Footer";
@@ -14,6 +19,7 @@ import {
   toggleGenreFilter,
   toggleAgeFilter,
   getMovies,
+  getCalendar,
 } from "./store/actions/actions";
 
 // named export of App component for testing purposes.
@@ -32,10 +38,13 @@ export const App = ({
   genreList,
   getMovies,
   films,
+  getCalendar,
+  calendar,
 }) => {
-  // on page load, fetch a list of films from the DB
+  // on page load, fetch a list of films and from the DB
   useEffect(() => {
     getMovies();
+    getCalendar(getCurrentMonthNumber(), getCurrentYearNumber());
   }, []);
 
   return (
@@ -55,6 +64,8 @@ export const App = ({
         ageList={ageList}
         genreList={genreList}
         films={films}
+        calendar={calendar}
+        getCalendar={getCalendar}
       />
       <Footer />
     </div>
@@ -70,6 +81,7 @@ const mapStateToProps = (state) => {
     ageList: state.age,
     genreList: state.genres,
     films: state.films,
+    calendar: state.calendar,
   };
 };
 
@@ -80,6 +92,7 @@ const mapDispatchToProps = {
   toggleGenreFilter,
   toggleAgeFilter,
   getMovies,
+  getCalendar,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
