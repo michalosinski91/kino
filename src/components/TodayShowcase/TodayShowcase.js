@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodayShowcase.scss";
-import { getTodayDate } from "../../utils/DateFormat";
+import {
+  getCurrentDayMonthString,
+  getTomorrowDayMonthString,
+} from "../../utils/DateFormat";
 
 import Date from "./Date/Date";
 import Schedule from "./Schedule/Schedule";
 
 export default function TodayShowcase() {
-  let date = getTodayDate();
+  const [displayDate, setDisplayDate] = useState(getCurrentDayMonthString());
+
+  function setDateToToday() {
+    setDisplayDate(getCurrentDayMonthString());
+  }
+
+  function setDateToTomorrow() {
+    setDisplayDate(getTomorrowDayMonthString());
+  }
+
   return (
     <section className="today-showcase">
       <img
@@ -15,8 +27,11 @@ export default function TodayShowcase() {
         alt="photo"
       />
       <div className="today-showcase__box">
-        <Schedule />
-        <Date date={date} />
+        <Schedule
+          setDateToToday={setDateToToday}
+          setDateToTomorrow={setDateToTomorrow}
+        />
+        <Date date={displayDate} />
       </div>
     </section>
   );

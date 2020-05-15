@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Schedule.scss";
 import List from "./List/List";
 
-export default function Schedule() {
+export default function Schedule({ setDateToToday, setDateToTomorrow }) {
+  const [activeSpan, setActiveSpan] = useState("Dzisiaj");
+
+  function handleDaySelect(el, cb) {
+    setActiveSpan(el.innerText);
+    cb();
+  }
+
   return (
     <div className="schedule">
       <div className="day-select">
-        <span className="day-select__day day-select__day--active">Dzisiaj</span>
-        <span className="day-select__day">Jutro</span>
+        <span
+          className={
+            activeSpan == "Dzisiaj"
+              ? "day-select__day day-select__day--active"
+              : "day-select__day"
+          }
+          onClick={({ target }) => handleDaySelect(target, setDateToToday)}
+        >
+          Dzisiaj
+        </span>
+        <span
+          className={
+            activeSpan == "Jutro"
+              ? "day-select__day day-select__day--active"
+              : "day-select__day"
+          }
+          onClick={({ target }) => handleDaySelect(target, setDateToTomorrow)}
+        >
+          Jutro
+        </span>
       </div>
       <List />
       <div className="schedule__calendar-link">
