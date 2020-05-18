@@ -55,7 +55,25 @@ const initialState = {
   ],
   films: [],
   calendar: [],
+  todayFilms: {},
+  tomorrowFilms: {},
 };
+
+function getDaySchedule(day, month, year) {
+  const findDay = calendarData.filter(
+    (calendarEntry) =>
+      calendarEntry.day == day &&
+      calendarEntry.month == month &&
+      calendarEntry.year == year
+  )[0];
+  findDay.timeSlots = findDay.timeSlots.map((timeSlot) => {
+    return {
+      ...timeSlot,
+      film: movieData.filter((film) => film.id == timeSlot.filmID)[0],
+    };
+  });
+  return findDay;
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -109,6 +127,24 @@ const reducer = (state = initialState, action) => {
           (calendarEntry) =>
             calendarEntry.month == action.payload.month &&
             calendarEntry.year == action.payload.year
+        ),
+      };
+    case "GET_TODAY_MOVIES":
+      return {
+        ...state,
+        todayFilms: getDaySchedule(
+          action.payload.day,
+          action.payload.month,
+          action.payload.year
+        ),
+      };
+    case "GET_TOMORROW_MOVIES":
+      return {
+        ...state,
+        tomorrowFilms: getDaySchedule(
+          action.payload.day,
+          action.payload.month,
+          action.payload.year
         ),
       };
     default:

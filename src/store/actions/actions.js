@@ -31,3 +31,21 @@ export const getCalendar = (month, year) => ({
     year,
   },
 });
+
+export const getTodayMovies = (day, month, year) => ({
+  type: "GET_TODAY_MOVIES",
+  payload: {
+    day,
+    month,
+    year,
+  },
+});
+
+export const getTomorrowMovies = (day, month, year) => ({
+  type: "GET_TOMORROW_MOVIES",
+  payload: {
+    day,
+    month,
+    year,
+  },
+});

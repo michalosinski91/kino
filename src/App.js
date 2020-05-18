@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 
 import {
+  getCurrentDayNumber,
   getCurrentMonthNumber,
   getCurrentYearNumber,
+  getTomorrowDayNumber,
+  getTomorrowMonthNumber,
+  getTomorrowYearNumber,
 } from "./utils/DateFormat";
 
 import Navbar from "./layout/Navbar/Navbar";
@@ -20,6 +24,8 @@ import {
   toggleAgeFilter,
   getMovies,
   getCalendar,
+  getTodayMovies,
+  getTomorrowMovies,
 } from "./store/actions/actions";
 
 // named export of App component for testing purposes.
@@ -40,11 +46,25 @@ export const App = ({
   films,
   getCalendar,
   calendar,
+  todayFilms,
+  tomorrowFilms,
+  getTodayMovies,
+  getTomorrowMovies,
 }) => {
-  // on page load, fetch a list of films and from the DB
+  // on page load, fetch a list of films, calendar, and today & tomorrow schedule from the DB
   useEffect(() => {
     getMovies();
     getCalendar(getCurrentMonthNumber(), getCurrentYearNumber());
+    getTodayMovies(
+      getCurrentDayNumber(),
+      getCurrentMonthNumber(),
+      getCurrentYearNumber()
+    );
+    getTomorrowMovies(
+      getTomorrowDayNumber(),
+      getTomorrowMonthNumber(),
+      getTomorrowYearNumber()
+    );
   }, []);
 
   return (
@@ -66,13 +86,15 @@ export const App = ({
         films={films}
         calendar={calendar}
         getCalendar={getCalendar}
+        todayFilms={todayFilms}
+        tomorrowFilms={tomorrowFilms}
       />
       <Footer />
     </div>
   );
 };
 
-// state
+// connection to state in redux
 const mapStateToProps = (state) => {
   return {
     showSearchBar: state.showSearchBar,
@@ -82,6 +104,8 @@ const mapStateToProps = (state) => {
     genreList: state.genres,
     films: state.films,
     calendar: state.calendar,
+    todayFilms: state.todayFilms,
+    tomorrowFilms: state.tomorrowFilms,
   };
 };
 
@@ -93,6 +117,8 @@ const mapDispatchToProps = {
   toggleAgeFilter,
   getMovies,
   getCalendar,
+  getTodayMovies,
+  getTomorrowMovies,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

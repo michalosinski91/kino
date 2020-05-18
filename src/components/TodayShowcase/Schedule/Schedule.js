@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Schedule.scss";
 import List from "./List/List";
 
-export default function Schedule({ setDateToToday, setDateToTomorrow }) {
+export default function Schedule({
+  setDateToToday,
+  setDateToTomorrow,
+  schedule,
+  handleDisplayPhotoChange,
+}) {
   const [activeSpan, setActiveSpan] = useState("Dzisiaj");
 
   function handleDaySelect(el, cb) {
@@ -35,7 +40,10 @@ export default function Schedule({ setDateToToday, setDateToTomorrow }) {
           Jutro
         </span>
       </div>
-      <List />
+      <List
+        schedule={schedule}
+        handleDisplayPhotoChange={handleDisplayPhotoChange}
+      />
       <div className="schedule__calendar-link">
         <Link to="/kalendarz">Przejdź do kalendarza</Link>
       </div>

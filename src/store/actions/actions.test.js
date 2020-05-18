@@ -58,3 +58,33 @@ test("should fetch calendar schedule for a given month from the DB", () => {
   };
   expect(actions.getCalendar(month, year)).toEqual(expectedAction);
 });
+
+test("should fetch films for today", () => {
+  const day = 19;
+  const month = 5;
+  const year = 2020;
+  const expectedAction = {
+    type: "GET_TODAY_MOVIES",
+    payload: {
+      day,
+      month,
+      year,
+    },
+  };
+  expect(actions.getTodayMovies(day, month, year)).toEqual(expectedAction);
+});
+
+test("should fetch films for tomorrow", () => {
+  const day = 20;
+  const month = 5;
+  const year = 2020;
+  const expectedAction = {
+    type: "GET_TOMORROW_MOVIES",
+    payload: {
+      day,
+      month,
+      year,
+    },
+  };
+  expect(actions.getTomorrowMovies(day, month, year)).toEqual(expectedAction);
+});

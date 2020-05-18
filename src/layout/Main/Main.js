@@ -22,6 +22,8 @@ export default function Main({
   films,
   calendar,
   getCalendar,
+  todayFilms,
+  tomorrowFilms,
 }) {
   return (
     <div className="main-container" data-testid="main-container">
@@ -62,7 +64,13 @@ export default function Main({
           path="/"
           exact
           render={() => (
-            <Home films={films} calendar={calendar} getCalendar={getCalendar} />
+            <Home
+              films={films}
+              calendar={calendar}
+              getCalendar={getCalendar}
+              todayFilms={todayFilms}
+              tomorrowFilms={tomorrowFilms}
+            />
           )}
         />
         <Route component={NotFound} />

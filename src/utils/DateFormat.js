@@ -6,6 +6,7 @@ const currentYear = todayDate.getFullYear();
 const tomorrowDate = getTomorrowDate(todayDate);
 const tomorrowDay = tomorrowDate.getDate();
 const tomorrowMonth = tomorrowDate.getMonth();
+const tomorrowYear = tomorrowDate.getFullYear();
 
 // gets the next day date object
 function getTomorrowDate(today) {
@@ -48,6 +49,10 @@ export function getCurrentMonthYearString() {
   return `${month}.${year}`;
 }
 
+export function getCurrentDayNumber() {
+  return currentDay;
+}
+
 export function getCurrentMonthNumber() {
   return currentMonth + 1;
 }
@@ -55,4 +60,15 @@ export function getCurrentMonthNumber() {
 export function getCurrentYearNumber() {
   return currentYear;
 }
-//
+
+export function getTomorrowDayNumber() {
+  return tomorrowDay;
+}
+
+export function getTomorrowMonthNumber() {
+  return tomorrowMonth + 1;
+}
+
+export function getTomorrowYearNumber() {
+  return tomorrowYear;
+}
