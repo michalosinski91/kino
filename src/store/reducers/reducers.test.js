@@ -4163,6 +4163,21 @@ test("should fetch calendar for a given month from the DB", () => {
       },
     ],
   });
+
+  expect(
+    reducer(
+      { calendar: [] },
+      {
+        type: "GET_CALENDAR",
+        payload: {
+          month: 13,
+          year: 2021,
+        },
+      }
+    )
+  ).toEqual({
+    calendar: [],
+  });
 });
 
 test("should fetch calendar entry and films for today", () => {

@@ -1,7 +1,7 @@
 const todayDate = new Date();
 const currentDay = todayDate.getDate();
-const currentMonth = todayDate.getMonth();
-const currentYear = todayDate.getFullYear();
+export const currentMonth = todayDate.getMonth();
+export const currentYear = todayDate.getFullYear();
 
 const tomorrowDate = getTomorrowDate(todayDate);
 const tomorrowDay = tomorrowDate.getDate();
@@ -20,6 +20,12 @@ function getTomorrowDate(today) {
 // else, it returns the string
 export function formatDate(str) {
   return str.length > 1 ? str : "0" + str;
+}
+
+export function formatMonthYearToString(m, y) {
+  let month = formatDate(m.toString());
+  let year = y.toString();
+  return `${month}.${year}`;
 }
 
 // returns current day & month in dd.mm format

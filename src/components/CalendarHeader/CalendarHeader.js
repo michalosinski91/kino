@@ -4,16 +4,30 @@ import { getCurrentMonthYearString } from "../../utils/DateFormat";
 
 //TODO: add icon & hover/click styling to Filter-Button
 
-export default function CalendarHeader({ toggleFilter }) {
-  let date = getCurrentMonthYearString();
+export default function CalendarHeader({
+  toggleFilter,
+  date,
+  increment,
+  decrement,
+}) {
+  function handleClick(operation) {
+    operation();
+  }
+
   return (
     <div className="calendar-header">
       <div className="calendar-header__date-picker">
-        <div className="calendar-header__arrow calendar-header__arrow--left">
+        <div
+          className="calendar-header__arrow calendar-header__arrow--left"
+          onClick={() => handleClick(decrement)}
+        >
           &larr;
         </div>
         <span>{date}</span>
-        <div className="calendar-header__arrow calendar-header__arrow--right">
+        <div
+          className="calendar-header__arrow calendar-header__arrow--right"
+          onClick={() => handleClick(increment)}
+        >
           &rarr;
         </div>
       </div>
