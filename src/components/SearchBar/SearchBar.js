@@ -2,13 +2,14 @@ import React from "react";
 import "./SearchBar.scss";
 
 export default function SearchBar({ showSearchBar, toggleSearchBar }) {
-  const handleToggleSearchBar = e => {
+  const handleToggleSearchBar = (e) => {
     e.preventDefault();
     toggleSearchBar();
   };
 
   return (
     <div
+      data-testid="search-bar-container"
       className={!showSearchBar ? "search-bar" : "search-bar search-bar--show"}
     >
       <form className="search-bar__form">
@@ -23,7 +24,7 @@ export default function SearchBar({ showSearchBar, toggleSearchBar }) {
         <button
           className="search-bar__button"
           data-testid="hideSearchBar"
-          onClick={e => handleToggleSearchBar(e)}
+          onClick={(e) => handleToggleSearchBar(e)}
         >
           <i className="fas fa-times search-bar__icon"></i>
         </button>

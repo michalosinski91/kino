@@ -6,7 +6,7 @@ export default function FilmInfo({ film }) {
   let actors = film.actors.split(", ");
 
   return (
-    <div className="film-info">
+    <div className="film-info" data-testid="film-info">
       <h3 className="heading heading--tertiary">Szczegóły</h3>
       <div className="film-info__container">
         <div className="film-info__details">
@@ -23,7 +23,7 @@ export default function FilmInfo({ film }) {
               <strong>Premiera: </strong>
               {film.release}
             </li>
-            <li>
+            <li data-testid="film-duration">
               <strong>Długość: </strong>
               {film.duration == "N/A" ? "Brak informacji" : film.duration}
             </li>

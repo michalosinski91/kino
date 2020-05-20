@@ -5,7 +5,6 @@ import CalendarSchedule from "../../components/CalendarSchedule/CalendarSchedule
 import Filter from "../../components/Filter/Filter";
 
 import {
-  getCurrentMonthYearString,
   currentMonth,
   currentYear,
   formatMonthYearToString,

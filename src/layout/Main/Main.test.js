@@ -179,4 +179,12 @@ test("The Main section displays the correct component on change of path", () => 
   expect(getByTestId("main-container").firstChild).toBe(
     getByTestId("notfound")
   );
+  history.push("/film");
+  expect(getByTestId("main-container").firstChild).toBe(
+    getByTestId("film-select")
+  );
+  history.push("/film/1");
+  expect(getByTestId("main-container").firstChild).toBe(
+    getByTestId("film-container")
+  );
 });

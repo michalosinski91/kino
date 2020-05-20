@@ -10,8 +10,8 @@ export default function CalendarHeader({
   increment,
   decrement,
 }) {
-  function handleClick(operation) {
-    operation();
+  function handleClick(cb) {
+    cb();
   }
 
   return (
@@ -20,13 +20,15 @@ export default function CalendarHeader({
         <div
           className="calendar-header__arrow calendar-header__arrow--left"
           onClick={() => handleClick(decrement)}
+          data-testid="arrowLeft"
         >
           &larr;
         </div>
-        <span>{date}</span>
+        <span data-testid="date-display">{date}</span>
         <div
           className="calendar-header__arrow calendar-header__arrow--right"
           onClick={() => handleClick(increment)}
+          data-testid="arrowRight"
         >
           &rarr;
         </div>

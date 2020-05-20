@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Schedule.scss";
 import List from "./List/List";
+import DayTab from "./DayTab/DayTab";
 
 export default function Schedule({
   setDateToToday,
@@ -9,36 +10,28 @@ export default function Schedule({
   schedule,
   handleDisplayPhotoChange,
 }) {
-  const [activeSpan, setActiveSpan] = useState("Dzisiaj");
+  const [activeTab, setActiveTab] = useState("Dzisiaj");
 
   function handleDaySelect(el, cb) {
-    setActiveSpan(el.innerText);
+    setActiveTab(el.innerText);
     cb();
   }
 
   return (
     <div className="schedule">
       <div className="day-select">
-        <span
-          className={
-            activeSpan == "Dzisiaj"
-              ? "day-select__day day-select__day--active"
-              : "day-select__day"
-          }
-          onClick={({ target }) => handleDaySelect(target, setDateToToday)}
-        >
-          Dzisiaj
-        </span>
-        <span
-          className={
-            activeSpan == "Jutro"
-              ? "day-select__day day-select__day--active"
-              : "day-select__day"
-          }
-          onClick={({ target }) => handleDaySelect(target, setDateToTomorrow)}
-        >
-          Jutro
-        </span>
+        <DayTab
+          name="Dzisiaj"
+          activeTab={activeTab}
+          operation={setDateToToday}
+          handleDaySelect={handleDaySelect}
+        />
+        <DayTab
+          name="Jutro"
+          activeTab={activeTab}
+          operation={setDateToTomorrow}
+          handleDaySelect={handleDaySelect}
+        />
       </div>
       <List
         schedule={schedule}

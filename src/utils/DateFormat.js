@@ -50,7 +50,7 @@ export function getTomorrowDayMonthString() {
 // returns current month & year in mm.yyyy format
 export function getCurrentMonthYearString() {
   let month = (1 + currentMonth).toString();
-  month = month.length > 1 ? month : "0" + month;
+  month = formatDate(month);
   let year = currentYear.toString();
   return `${month}.${year}`;
 }

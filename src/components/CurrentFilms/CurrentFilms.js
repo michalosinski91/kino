@@ -5,7 +5,11 @@ import FilmListItem from "../FilmListItem/FilmListItem";
 export default function CurrentFilms({ films }) {
   // Add loading Spinner for loading state
   if (!films) {
-    return <p>Loading...</p>;
+    return (
+      <div data-testid="current-film-loader">
+        <p data-testid="loading">Loading...</p>
+      </div>
+    );
   }
 
   return (

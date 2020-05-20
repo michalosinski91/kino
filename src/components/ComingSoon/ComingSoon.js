@@ -5,7 +5,11 @@ import FilmListItem from "../FilmListItem/FilmListItem";
 export default function ComingSoon({ films }) {
   // Add loading spinner
   if (!films) {
-    return <p>Loading...</p>;
+    return (
+      <div data-testid="coming-soon-loader">
+        <p data-testid="loading">Loading...</p>
+      </div>
+    );
   }
 
   return (
