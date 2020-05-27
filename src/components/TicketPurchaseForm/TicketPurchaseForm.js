@@ -1,7 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TicketPurchaseForm.scss";
-import PurchaseSummary from "../PurchaseSummary/PurchaseSummary";
+import SelectDetails from "../SelectDetails/SelectDetails";
+import SelectSeats from "../SelectSeats/SelectSeats";
+import SelectSummary from "../SelectSummary/SelectSummary";
+import calendarData from "../../db/calendar.json";
 
+export default function TicketPurchaseForm({
+  toggleTicketPurchaseForm,
+  handleSubmit,
+  films,
+  calendar,
+}) {
+  const [selectFilm, setSelectFilm] = useState("");
+  const [selectDate, setSelectDate] = useState("");
+  const [selectTime, setSelectTime] = useState("");
+  const [availableDates, setAvailableDates] = useState([]);
+  const [availableTimes, setAvailableTimes] = useState([]);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+
+  useEffect(() => {
+    if (selectFilm) {
+      findAvailableDates(selectFilm);
+    }
+  }, [selectFilm]);
+
+  useEffect(() => {
+    if (selectDate) {
+      findAvailableTime(selectDate, selectFilm);
+    }
+  }, [selectDate]);
+
+  useEffect(() => {
+    if (selectTime) {
+      getSelectedTimeSlotInfo(selectTime, availableTimes);
+    }
+  }, [selectTime]);
+
+  /**
+   * returns an array of films with only title and id object
+   */
+
+  const filmList = films.map((film) => {
+    return {
+      title: film.title,
+      id: film.id,
+    };
+  });
+
+  /**
+   * gets the title of a film, finds information about the film, finds all days when the film is played
+   * TODO: move to redux store
+   */
+
+  function findAvailableDates(title) {
+    const film = films.filter((film) => film.title == title)[0];
+    const filmSchedule = calendarData.filter((day) =>
+      day.timeSlots.some((slot) => slot.filmID == film.id)
+    );
+    setAvailableDates(filmSchedule);
+  }
+
+  /**
+   * gets the date and the film, finds all time slots when the film is played on a given date
+   * TODO: move to redux store
+   */
+
+  function findAvailableTime(date, title) {
+    const film = films.filter((film) => film.title == title)[0];
+    const day = availableDates.filter((d) => d.date == date)[0];
+    const timeSlotList = day.timeSlots.filter((slot) => slot.filmID == film.id);
+    setAvailableTimes(timeSlotList);
+  }
+
+  function getSelectedTimeSlotInfo(time, date) {
+    const selectedSlot = date.filter((d) => d.time == time)[0];
+    setSelectedTimeSlot(selectedSlot);
+  }
+
+  return (
+    <div className="ticket-purchase" data-testid="ticket-purchase">
+      <SelectDetails
+        selectFilm={selectFilm}
+        setSelectFilm={setSelectFilm}
+        selectDate={selectDate}
+        setSelectDate={setSelectDate}
+        selectTime={selectTime}
+        setSelectTime={setSelectTime}
+        filmList={filmList}
+        availableDates={availableDates}
+        availableTimes={availableTimes}
+      />
+      <SelectSeats slotData={selectedTimeSlot} />
+      <SelectSummary />
+      <div className="ticket-purchase__buttons">
+        <button
+          data-testid="form-submit"
+          className="ticket-purchase__button"
+          type="submit"
+        >
+          Przejdź do zapłaty
+        </button>
+        <button
+          className="ticket-purchase__cancel"
+          onClick={toggleTicketPurchaseForm}
+        >
+          Anuluj zakup
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/** 
+ * TODO: refactoring
+
+  
 export default function TicketPurchaseForm({
   toggleTicketPurchaseForm,
   handleSubmit,
@@ -121,3 +234,4 @@ export default function TicketPurchaseForm({
     </div>
   );
 }
+*/

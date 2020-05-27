@@ -2,7 +2,7 @@ import React from "react";
 import "./Modal.scss";
 import TicketPurchaseForm from "../TicketPurchaseForm/TicketPurchaseForm";
 
-export default function Modal({ toggleTicketPurchaseForm }) {
+export default function Modal({ toggleTicketPurchaseForm, films, calendar }) {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -15,6 +15,8 @@ export default function Modal({ toggleTicketPurchaseForm }) {
         <TicketPurchaseForm
           toggleTicketPurchaseForm={toggleTicketPurchaseForm}
           handleSubmit={handleSubmit}
+          films={films}
+          calendar={calendar}
         />
       </div>
     </div>

@@ -7,6 +7,9 @@ import Modal from "../../components/Modal/Modal";
 export default function BoxOffice({
   showTicketPurchaseForm,
   toggleTicketPurchaseForm,
+  films,
+  calendar,
+  getCalendar,
 }) {
   return (
     <div data-testid="boxoffice" className="boxoffice">
@@ -20,7 +23,11 @@ export default function BoxOffice({
         <TicketInfo />
       </div>
       {showTicketPurchaseForm ? (
-        <Modal toggleTicketPurchaseForm={toggleTicketPurchaseForm} />
+        <Modal
+          toggleTicketPurchaseForm={toggleTicketPurchaseForm}
+          films={films}
+          calendar={calendar}
+        />
       ) : null}
     </div>
   );

@@ -1,0 +1,30 @@
+.select-seats {
+  &__cinema-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    padding: 1rem;
+    border: 2px solid rgb(221, 221, 221);
+  }
+
+  &__screen {
+    border: 2rem solid black;
+    display: inline-block;
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  &__seating-area {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px 5px;
+  }
+}

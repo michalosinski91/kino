@@ -1,9 +1,9 @@
 import reducer from "./reducers";
 
-test("should return the empty initial state", () => {
+test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
     showSearchBar: false,
-    showTicketPurchaseForm: false,
+    showTicketPurchaseForm: true,
     showFilter: false,
     genres: [
       {

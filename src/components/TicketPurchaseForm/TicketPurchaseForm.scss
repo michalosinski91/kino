@@ -6,10 +6,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  & h3 {
-    margin-left: 0;
-  }
-
   &__form {
     display: flex;
     flex-direction: column;
@@ -19,9 +15,14 @@
     }
   }
 
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__button {
     cursor: pointer;
-    height: 5rem;
+    height: 4rem;
     border: none;
     background-color: black;
     color: white;

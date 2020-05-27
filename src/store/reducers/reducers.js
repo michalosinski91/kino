@@ -3,7 +3,7 @@ import calendarData from "../../db/calendar.json";
 
 const initialState = {
   showSearchBar: false,
-  showTicketPurchaseForm: false,
+  showTicketPurchaseForm: true,
   showFilter: false,
   genres: [
     {
