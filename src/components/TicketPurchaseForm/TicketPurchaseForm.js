@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./TicketPurchaseForm.scss";
+import StageIndicator from "../StageIndicator/StageIndicator";
 import SelectDetails from "../SelectDetails/SelectDetails";
 import SelectSeats from "../SelectSeats/SelectSeats";
-import SelectSummary from "../SelectSummary/SelectSummary";
 import calendarData from "../../db/calendar.json";
 
 export default function TicketPurchaseForm({
@@ -11,21 +11,29 @@ export default function TicketPurchaseForm({
   films,
   calendar,
 }) {
+  const [activeTab, setActiveTab] = useState("selectDetails");
   const [selectFilm, setSelectFilm] = useState("");
   const [selectDate, setSelectDate] = useState("");
   const [selectTime, setSelectTime] = useState("");
   const [availableDates, setAvailableDates] = useState([]);
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [seatSelection, setSeatSelection] = useState([]);
+  const [infoValid, setInfoValid] = useState(false);
 
   useEffect(() => {
     if (selectFilm) {
+      setInfoValid(false);
+      setSelectDate("");
+      setSelectTime("");
       findAvailableDates(selectFilm);
     }
   }, [selectFilm]);
 
   useEffect(() => {
     if (selectDate) {
+      setInfoValid(false);
+      setSelectTime("");
       findAvailableTime(selectDate, selectFilm);
     }
   }, [selectDate]);
@@ -34,12 +42,14 @@ export default function TicketPurchaseForm({
     if (selectTime) {
       getSelectedTimeSlotInfo(selectTime, availableTimes);
     }
+    if (selectFilm && selectDate && selectTime) {
+      setInfoValid(true);
+    }
   }, [selectTime]);
 
   /**
    * returns an array of films with only title and id object
    */
-
   const filmList = films.map((film) => {
     return {
       title: film.title,
@@ -77,29 +87,104 @@ export default function TicketPurchaseForm({
     setSelectedTimeSlot(selectedSlot);
   }
 
+  function handleSeatSelect(seat) {
+    let position = seatSelection.indexOf(seat);
+    let selection = seatSelection;
+    if (position == -1) {
+      selection.push(seat);
+      setSeatSelection(selection);
+      checkSeatSelectionValid();
+    } else {
+      selection.splice(position, 1);
+      setSeatSelection(selection);
+      checkSeatSelectionValid();
+    }
+  }
+
+  function checkSeatSelectionValid() {
+    if (seatSelection.length > 0) {
+      setInfoValid(true);
+    } else {
+      setInfoValid(false);
+    }
+  }
+
+  const tabList = [
+    "selectDetails",
+    "selectSeats",
+    "customerInfo",
+    "paymentDetails",
+    "purchaseSummary",
+  ];
+
+  function handleNextStage() {
+    if (activeTab == "selectDetails") {
+      setActiveTab("selectSeats");
+      setInfoValid(false);
+    }
+    if (activeTab == "selectSeats") {
+      setActiveTab("customerInfo");
+      setInfoValid(false);
+    }
+    if (activeTab == "customerInfo") {
+      setActiveTab("paymentDetails");
+      setInfoValid(false);
+    }
+    if (activeTab == "paymentDetails") {
+      setActiveTab("purchaseSummary");
+      setInfoValid(false);
+    }
+    if (activeTab == "purchaseSummary") {
+      console.log("end");
+    }
+  }
+
   return (
     <div className="ticket-purchase" data-testid="ticket-purchase">
-      <SelectDetails
-        selectFilm={selectFilm}
-        setSelectFilm={setSelectFilm}
-        selectDate={selectDate}
-        setSelectDate={setSelectDate}
-        selectTime={selectTime}
-        setSelectTime={setSelectTime}
-        filmList={filmList}
-        availableDates={availableDates}
-        availableTimes={availableTimes}
-      />
-      <SelectSeats slotData={selectedTimeSlot} />
-      <SelectSummary />
+      <StageIndicator activeTab={activeTab} />
+      <div className="ticket-purchase__main">
+        {activeTab == "selectDetails" && (
+          <SelectDetails
+            selectFilm={selectFilm}
+            setSelectFilm={setSelectFilm}
+            selectDate={selectDate}
+            setSelectDate={setSelectDate}
+            selectTime={selectTime}
+            setSelectTime={setSelectTime}
+            filmList={filmList}
+            availableDates={availableDates}
+            availableTimes={availableTimes}
+          />
+        )}
+        {activeTab == "selectSeats" && (
+          <SelectSeats
+            slotData={selectedTimeSlot}
+            handleSeatSelect={handleSeatSelect}
+          />
+        )}
+
+        {activeTab == "customerInfo" && <div>Contact</div>}
+        {activeTab == "paymentDetails" && <div>Payment</div>}
+        {activeTab == "purchaseSummary" && <div>Summary</div>}
+      </div>
       <div className="ticket-purchase__buttons">
-        <button
-          data-testid="form-submit"
-          className="ticket-purchase__button"
-          type="submit"
-        >
-          Przejdź do zapłaty
-        </button>
+        {!infoValid ? (
+          <button
+            data-testid="button-next"
+            className="ticket-purchase__button ticket-purchase__button--disabled"
+            disabled
+          >
+            Przejdź Dalej
+          </button>
+        ) : (
+          <button
+            data-testid="button-next-disabled"
+            className="ticket-purchase__button"
+            onClick={handleNextStage}
+          >
+            Przejdź Dalej
+          </button>
+        )}
         <button
           className="ticket-purchase__cancel"
           onClick={toggleTicketPurchaseForm}
@@ -110,128 +195,3 @@ export default function TicketPurchaseForm({
     </div>
   );
 }
-
-/** 
- * TODO: refactoring
-
-  
-export default function TicketPurchaseForm({
-  toggleTicketPurchaseForm,
-  handleSubmit,
-}) {
-  const [filmSelect, setFilmSelect] = useState("test1");
-  const [dateSelect, setDateSelect] = useState("test1");
-  const [hourSelect, setHourSelect] = useState("test1");
-  const [ticketNumber, setTicketNumber] = useState("test1");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
-
-  return (
-    <div className="ticket-purchase" data-testid="ticket-purchase">
-      <h3 className="heading heading--tertiary">Zakup bilety online</h3>
-      <form
-        data-testid="purchase-form"
-        className="ticket-purchase__form"
-        onSubmit={handleSubmit}
-      >
-        <label>
-          Wybierz film:
-          <select
-            value={filmSelect}
-            onChange={({ target }) => setFilmSelect(target.value)}
-          >
-            <option value="test1">Test 1</option>
-            <option value="test2">Test 2</option>
-            <option value="test3">Test 3</option>
-            <option value="test4">Test 4</option>
-            <option value="test5">Test 5</option>
-          </select>
-        </label>
-        <label>
-          Dzień:
-          <select
-            value={dateSelect}
-            onChange={({ target }) => setDateSelect(target.value)}
-          >
-            <option value="test1">Test 1</option>
-            <option value="test2">Test 2</option>
-            <option value="test3">Test 3</option>
-            <option value="test4">Test 4</option>
-            <option value="test5">Test 5</option>
-          </select>
-        </label>
-        <label>
-          Godzina:
-          <select
-            value={hourSelect}
-            onChange={({ target }) => setHourSelect(target.value)}
-          >
-            <option value="test1">Test 1</option>
-            <option value="test2">Test 2</option>
-            <option value="test3">Test 3</option>
-            <option value="test4">Test 4</option>
-            <option value="test5">Test 5</option>
-          </select>
-        </label>
-        <label>
-          Ilość biletów:
-          <select
-            value={ticketNumber}
-            onChange={({ target }) => setTicketNumber(target.value)}
-          >
-            <option value="test1">Test 1</option>
-            <option value="test2">Test 2</option>
-            <option value="test3">Test 3</option>
-            <option value="test4">Test 4</option>
-            <option value="test5">Test 5</option>
-          </select>
-        </label>
-        <label>
-          Imię:
-          <input
-            type="text"
-            onChange={({ target }) => setFirstName(target.value)}
-          />
-        </label>
-        <label>
-          Nazwisko:
-          <input
-            type="text"
-            onChange={({ target }) => setLastName(target.value)}
-          />
-        </label>
-        <label>
-          E-mail:
-          <input
-            type="email"
-            onChange={({ target }) => setEmail(target.value)}
-          />
-        </label>
-        <label>
-          Powtórz e-mail:
-          <input
-            type="email"
-            onChange={({ target }) => setConfirmEmail(target.value)}
-          />
-        </label>
-        <PurchaseSummary />
-        <button
-          data-testid="form-submit"
-          className="ticket-purchase__button"
-          type="submit"
-        >
-          Przejdź do zapłaty
-        </button>
-        <button
-          className="ticket-purchase__cancel"
-          onClick={toggleTicketPurchaseForm}
-        >
-          Anuluj zakup
-        </button>
-      </form>
-    </div>
-  );
-}
-*/

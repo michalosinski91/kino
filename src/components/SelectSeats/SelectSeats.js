@@ -4,10 +4,10 @@ import "./SelectSeats.scss";
 import Seat from "./Seat/Seat";
 import Legend from "./Legend/Legend";
 
-export default function SelectSeats({ slotData }) {
+export default function SelectSeats({ slotData, handleSeatSelect }) {
   const [seatingGrid, setSeatingGrid] = useState(null);
-  const [seatSelection, setSeatSelection] = useState([]);
-  const NUMBER_OF_SEATS = 100;
+
+  const NUMBER_OF_SEATS = 104;
 
   useEffect(() => {
     createSeatingGrid(slotData);
@@ -34,19 +34,6 @@ export default function SelectSeats({ slotData }) {
       }
     }
     setSeatingGrid(grid);
-  }
-
-  function handleSeatSelect(seat) {
-    let position = seatSelection.indexOf(seat);
-    let selection = seatSelection;
-    console.log(selection, position, seat);
-    if (position == -1) {
-      selection.push(seat);
-      setSeatSelection(selection);
-    } else {
-      selection.splice(position, 1);
-      setSeatSelection(selection);
-    }
   }
 
   return (

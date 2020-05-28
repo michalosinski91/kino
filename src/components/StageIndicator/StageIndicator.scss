@@ -1,0 +1,23 @@
+.stage-indicator {
+  display: flex;
+  justify-content: center;
+
+  &__item {
+    color: #999999;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #999999;
+    &:not(:last-of-type) {
+      margin-right: 2rem;
+    }
+
+    &--active {
+      color: black;
+      border-bottom: 2px solid black;
+    }
+  }
+
+  & i {
+    align-self: center;
+    margin-right: 2rem;
+  }
+}

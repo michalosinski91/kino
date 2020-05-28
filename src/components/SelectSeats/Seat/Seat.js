@@ -5,7 +5,7 @@ export default function Seat({ label, status, handleSeatSelect }) {
   const [seatSelected, setSeatSelected] = useState(false);
 
   function toggleSeatSelect() {
-    handleSeatSelect(label - 1);
+    handleSeatSelect(label);
     setSeatSelected(!seatSelected);
   }
 
@@ -19,6 +19,14 @@ export default function Seat({ label, status, handleSeatSelect }) {
   if (status == "taken") {
     return (
       <div className="seat seat--taken">
+        <p>{label}</p>
+      </div>
+    );
+  }
+
+  if (status == "selected") {
+    return (
+      <div className="seat seat--selected">
         <p>{label}</p>
       </div>
     );

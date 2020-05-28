@@ -3,28 +3,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 3rem 0;
     padding: 1rem;
     border: 2px solid rgb(221, 221, 221);
   }
 
   &__screen {
-    border: 2rem solid black;
     display: inline-block;
-    width: 70%;
+    width: 55rem;
+    height: 2rem;
+    background-color: black;
     padding: 0.5rem;
-    border-radius: 50%;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
+    box-shadow: 0 15px 10px 0px rgba(123, 0, 9, 0.3);
+    animation: screenFlick 7s infinite;
+
+    @keyframes screenFlick {
+      0% {
+        box-shadow: 0 15px 10px 0px rgba(123, 0, 9, 0.3);
+      }
+      25% {
+        box-shadow: 0 15px 10px 0px rgba(255, 108, 0, 0.3);
+      }
+      50% {
+        box-shadow: 0 15px 10px 0px rgba(0, 106, 95, 0.3);
+      }
+      75% {
+        box-shadow: 0 15px 10px 0px rgba(83, 119, 0, 0.3);
+      }
+      100% {
+        box-shadow: 0 15px 10px 0px rgba(0, 0, 0, 0.3);
+      }
+    }
   }
 
   &__seating-area {
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 5px 5px;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(autofill, 1fr);
+    gap: 8px 4px;
   }
 }

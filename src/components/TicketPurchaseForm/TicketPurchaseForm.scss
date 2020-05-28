@@ -6,13 +6,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-
-    & label {
-      margin-top: 1rem;
-    }
+  &__main {
+    height: 47rem;
+    margin: 2rem 0;
   }
 
   &__buttons {
@@ -27,6 +23,11 @@
     background-color: black;
     color: white;
     font-size: 2rem;
+
+    &--disabled {
+      background-color: rgb(99, 99, 99);
+      cursor: default;
+    }
   }
 
   &__cancel {
