@@ -4,6 +4,7 @@ import StageIndicator from "../StageIndicator/StageIndicator";
 import SelectDetails from "../SelectDetails/SelectDetails";
 import SelectSeats from "../SelectSeats/SelectSeats";
 import calendarData from "../../db/calendar.json";
+import CustomerDetails from "../CustomerDetails/CustomerDetails";
 
 export default function TicketPurchaseForm({
   toggleTicketPurchaseForm,
@@ -11,15 +12,25 @@ export default function TicketPurchaseForm({
   films,
   calendar,
 }) {
-  const [activeTab, setActiveTab] = useState("selectDetails");
+  //UI
+  const [activeTab, setActiveTab] = useState("customerInfo");
+  const [infoValid, setInfoValid] = useState(false);
+  // Film Selection
   const [selectFilm, setSelectFilm] = useState("");
   const [selectDate, setSelectDate] = useState("");
   const [selectTime, setSelectTime] = useState("");
   const [availableDates, setAvailableDates] = useState([]);
   const [availableTimes, setAvailableTimes] = useState([]);
+  //Seat selection
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [seatSelection, setSeatSelection] = useState([]);
-  const [infoValid, setInfoValid] = useState(false);
+  //Contact Details
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [acceptMarketing, setAcceptMarketing] = useState(false);
 
   useEffect(() => {
     if (selectFilm) {
@@ -46,6 +57,10 @@ export default function TicketPurchaseForm({
       setInfoValid(true);
     }
   }, [selectTime]);
+
+  useEffect(() => {
+    checkFormValid();
+  }, [firstName, lastName, email, contactNumber, acceptTerms]);
 
   /**
    * returns an array of films with only title and id object
@@ -108,6 +123,43 @@ export default function TicketPurchaseForm({
       setInfoValid(false);
     }
   }
+  /**
+   * TODO: ADD FORM VALIDATION
+   */
+  function handleFormInput(field, input) {
+    if (field == "firstName") {
+      setFirstName(input);
+    }
+    if (field == "lastName") {
+      setLastName(input);
+    }
+    if (field == "email") {
+      setEmail(input);
+    }
+    if (field == "contactNumber") {
+      setContactNumber(input);
+    }
+    if (field == "acceptMarketing") {
+      setAcceptMarketing(!acceptMarketing);
+    }
+    if (field == "acceptTerms") {
+      setAcceptTerms(!acceptTerms);
+    }
+  }
+
+  function checkFormValid() {
+    if (
+      firstName.length &&
+      lastName.length &&
+      email.length &&
+      contactNumber.length &&
+      acceptTerms
+    ) {
+      setInfoValid(true);
+    } else {
+      setInfoValid(false);
+    }
+  }
 
   const tabList = [
     "selectDetails",
@@ -163,7 +215,17 @@ export default function TicketPurchaseForm({
           />
         )}
 
-        {activeTab == "customerInfo" && <div>Contact</div>}
+        {activeTab == "customerInfo" && (
+          <CustomerDetails
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            contactNumber={contactNumber}
+            acceptTerms={acceptTerms}
+            acceptMarketing={acceptMarketing}
+            handleFormInput={handleFormInput}
+          />
+        )}
         {activeTab == "paymentDetails" && <div>Payment</div>}
         {activeTab == "purchaseSummary" && <div>Summary</div>}
       </div>
