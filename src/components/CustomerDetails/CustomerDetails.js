@@ -55,7 +55,7 @@ export default function CustomerDetails({
         <label className="customer-details__checkbox">
           <input
             type="checkbox"
-            onClick={() => handleFormInput("acceptMarketing")}
+            onClick={() => handleFormInput("acceptMarketing", !acceptMarketing)}
           />{" "}
           <span>
             Wyrażam zgodę, by moje dane były używane przez KINO NOIR i ich
@@ -69,7 +69,7 @@ export default function CustomerDetails({
         <label className="customer-details__checkbox">
           <input
             type="checkbox"
-            onClick={() => handleFormInput("acceptTerms")}
+            onClick={() => handleFormInput("acceptTerms", !acceptTerms)}
           />{" "}
           <span>
             Zapoznałem/Zapoznałam się i akceptuję warunki{" "}

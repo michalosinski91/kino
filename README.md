@@ -5,7 +5,7 @@ TODO:
 - Contact Page - contact details, form, map (google or opensourcemap?)
 - Component Animations
 - Media Queries
-- Form design to improve - staggered display
+- TIcketPurchaseForm - when film selection changes, the other fields clear the selection data, but the selectTime field does not rever to disabled status
 - Money formatting helper
 - Implement filter functionality once film DB is linked
 - Aktualnosci - connect to CMS?

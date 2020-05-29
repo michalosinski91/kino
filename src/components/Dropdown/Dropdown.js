@@ -8,12 +8,22 @@ export default function Dropdown({
   filmList,
   availableDates,
   availableTimes,
+  disabled,
 }) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="dropdown" onClick={() => setShowMenu(!showMenu)}>
-      <div className="dropdown__label">
+    <div
+      className={disabled ? "dropdown dropdown--disabled" : "dropdown"}
+      onClick={disabled ? null : () => setShowMenu(!showMenu)}
+    >
+      <div
+        className={
+          disabled
+            ? "dropdown__label dropdown__label--disabled"
+            : "dropdown__label"
+        }
+      >
         {label}{" "}
         <i
           className={

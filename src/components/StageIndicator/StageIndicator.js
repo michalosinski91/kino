@@ -36,22 +36,22 @@ export default function StageIndicator({ activeTab }) {
       <i className="fa fa-angle-right"></i>
       <div
         className={
+          activeTab == "bookingSummary"
+            ? "stage-indicator__item stage-indicator__item--active"
+            : "stage-indicator__item"
+        }
+      >
+        Podsumowanie
+      </div>
+      <i className="fa fa-angle-right"></i>
+      <div
+        className={
           activeTab == "paymentDetails"
             ? "stage-indicator__item stage-indicator__item--active"
             : "stage-indicator__item"
         }
       >
         Zapłać
-      </div>
-      <i className="fa fa-angle-right"></i>
-      <div
-        className={
-          activeTab == "purchaseSummary"
-            ? "stage-indicator__item stage-indicator__item--active"
-            : "stage-indicator__item"
-        }
-      >
-        Podsumowanie
       </div>
     </div>
   );

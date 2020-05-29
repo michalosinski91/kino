@@ -1,6 +1,7 @@
 .stage-indicator {
   display: flex;
   justify-content: center;
+  cursor: default;
 
   &__item {
     color: #999999;

@@ -8,6 +8,7 @@ export default function Select({
   filmList,
   availableDates,
   availableTimes,
+  disabled,
 }) {
   return (
     <div className="select">
@@ -17,6 +18,7 @@ export default function Select({
         filmList={filmList}
         availableDates={availableDates}
         availableTimes={availableTimes}
+        disabled={disabled}
       />
     </div>
   );

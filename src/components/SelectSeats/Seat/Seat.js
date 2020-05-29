@@ -32,6 +32,30 @@ export default function Seat({ label, status, handleSeatSelect }) {
     );
   }
 
+  if (status == "taken--legend") {
+    return (
+      <div className="seat seat--taken-legend">
+        <p>00</p>
+      </div>
+    );
+  }
+
+  if (status == "free--legend") {
+    return (
+      <div className="seat seat--free-legend">
+        <p>00</p>
+      </div>
+    );
+  }
+
+  if (status == "selected--legend") {
+    return (
+      <div className="seat seat--selected-legend">
+        <p>00</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={!seatSelected ? "seat seat--free" : "seat seat--selected"}

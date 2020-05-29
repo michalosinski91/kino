@@ -1,6 +1,6 @@
 .seat {
-  height: 3rem;
-  width: 3rem;
+  height: 3.2rem;
+  width: 3.2rem;
   position: relative;
   border-radius: 5px;
 
@@ -12,24 +12,47 @@
   }
 
   &--disable {
+    cursor: default;
     background-color: grey;
   }
 
   &--taken {
-    background-color: red;
+    cursor: default;
+    background-color: #999999;
+  }
+
+  &--taken-legend {
+    cursor: default;
+    background-color: #999999;
   }
 
   &--free {
     cursor: pointer;
-    background-color: lightblue;
+    color: black;
+    background-color: white;
+    border: 3px solid black;
 
     &:hover {
-      background-color: lightgreen;
+      background-color: #9999997e;
     }
+  }
+
+  &--free-legend {
+    cursor: default;
+    color: black;
+    background-color: white;
+    border: 3px solid black;
   }
 
   &--selected {
     cursor: pointer;
-    background-color: green;
+    color: white;
+    background-color: black;
+  }
+
+  &--selected-legend {
+    cursor: default;
+    color: white;
+    background-color: black;
   }
 }

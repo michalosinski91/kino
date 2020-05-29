@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import "./TicketPurchaseForm.scss";
 import StageIndicator from "../StageIndicator/StageIndicator";
 import SelectDetails from "../SelectDetails/SelectDetails";
 import SelectSeats from "../SelectSeats/SelectSeats";
 import calendarData from "../../db/calendar.json";
 import CustomerDetails from "../CustomerDetails/CustomerDetails";
+import BookingSummary from "../BookingSummary/BookingSummary";
+import PaymentDetails from "../PaymentDetails/PaymentDetails";
+
+const stripePromise = loadStripe("pk_test_UMrVR6XuKq1H1XWgsZQaIeQd");
 
 export default function TicketPurchaseForm({
   toggleTicketPurchaseForm,
@@ -13,7 +19,7 @@ export default function TicketPurchaseForm({
   calendar,
 }) {
   //UI
-  const [activeTab, setActiveTab] = useState("customerInfo");
+  const [activeTab, setActiveTab] = useState("selectDetails");
   const [infoValid, setInfoValid] = useState(false);
   // Film Selection
   const [selectFilm, setSelectFilm] = useState("");
@@ -31,6 +37,8 @@ export default function TicketPurchaseForm({
   const [contactNumber, setContactNumber] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [acceptMarketing, setAcceptMarketing] = useState(false);
+  //Summary
+  const [totalCost, setTotalCost] = useState(0);
 
   useEffect(() => {
     if (selectFilm) {
@@ -108,12 +116,12 @@ export default function TicketPurchaseForm({
     if (position == -1) {
       selection.push(seat);
       setSeatSelection(selection);
-      checkSeatSelectionValid();
     } else {
       selection.splice(position, 1);
       setSeatSelection(selection);
-      checkSeatSelectionValid();
     }
+    checkSeatSelectionValid();
+    calculateTotalCost();
   }
 
   function checkSeatSelectionValid() {
@@ -140,10 +148,10 @@ export default function TicketPurchaseForm({
       setContactNumber(input);
     }
     if (field == "acceptMarketing") {
-      setAcceptMarketing(!acceptMarketing);
+      setAcceptMarketing(input);
     }
     if (field == "acceptTerms") {
-      setAcceptTerms(!acceptTerms);
+      setAcceptTerms(input);
     }
   }
 
@@ -161,12 +169,23 @@ export default function TicketPurchaseForm({
     }
   }
 
+  /**
+   * TODO: TICKET PRICE IS SET AS STATIC
+   */
+  function calculateTotalCost() {
+    const TICKET_COST = 20;
+    console.log(seatSelection, seatSelection.length);
+    const totalAmount = TICKET_COST * seatSelection.length;
+    console.log(totalAmount);
+    setTotalCost(totalAmount);
+  }
+
   const tabList = [
     "selectDetails",
     "selectSeats",
     "customerInfo",
+    "bookingSummary",
     "paymentDetails",
-    "purchaseSummary",
   ];
 
   function handleNextStage() {
@@ -179,15 +198,14 @@ export default function TicketPurchaseForm({
       setInfoValid(false);
     }
     if (activeTab == "customerInfo") {
+      setActiveTab("bookingSummary");
+      setInfoValid(true);
+    }
+    if (activeTab == "bookingSummary") {
       setActiveTab("paymentDetails");
-      setInfoValid(false);
     }
     if (activeTab == "paymentDetails") {
-      setActiveTab("purchaseSummary");
-      setInfoValid(false);
-    }
-    if (activeTab == "purchaseSummary") {
-      console.log("end");
+      console.log("payment");
     }
   }
 
@@ -226,8 +244,26 @@ export default function TicketPurchaseForm({
             handleFormInput={handleFormInput}
           />
         )}
-        {activeTab == "paymentDetails" && <div>Payment</div>}
-        {activeTab == "purchaseSummary" && <div>Summary</div>}
+        {activeTab == "bookingSummary" && (
+          <BookingSummary
+            selectFilm={selectFilm}
+            selectDate={selectDate}
+            selectTime={selectTime}
+            seatSelection={seatSelection}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            contactNumber={contactNumber}
+            acceptTerms={acceptTerms}
+            acceptMarketing={acceptMarketing}
+            totalCost={totalCost}
+          />
+        )}
+        {activeTab == "paymentDetails" && (
+          <Elements stripe={stripePromise}>
+            <PaymentDetails />
+          </Elements>
+        )}
       </div>
       <div className="ticket-purchase__buttons">
         {!infoValid ? (
